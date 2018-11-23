@@ -1,0 +1,106 @@
+WEBVTT
+
+00:01.050 --> 00:05.110
+In this video I'll demonstrate how to create a software.
+
+00:05.130 --> 00:12.080
+I scuzz the initiator connection from your ESX host to a storage array.
+
+00:12.180 --> 00:19.770
+So here we can see if we look at my ESX I host it we're looking at my host and we've clicked on configure
+
+00:20.160 --> 00:27.720
+and storage adapters you can see a number of storage adapters here one of which is the eye scuzzy software
+
+00:27.960 --> 00:29.300
+adapter.
+
+00:29.310 --> 00:34.650
+If you don't have one of these on your host Currently you can just click this little green plus button
+
+00:35.160 --> 00:36.720
+and it's greyed out for me.
+
+00:36.720 --> 00:38.660
+That's because I've already created it.
+
+00:38.700 --> 00:44.910
+Basically you just had that plus button and cradle software ice Kaze adapter and this will appear right.
+
+00:45.060 --> 00:48.420
+Initially it's not really providing you with anything.
+
+00:48.540 --> 00:52.020
+Right we can see we've got a software adapter here.
+
+00:52.020 --> 00:54.360
+There are no devices listed them right.
+
+00:54.380 --> 00:54.840
+So.
+
+00:54.840 --> 01:02.940
+So the goal here is to connect to an ICE Gazi storage device and to see a list of Lund's presented here
+
+01:02.940 --> 01:04.510
+on this device list.
+
+01:04.830 --> 01:09.520
+And we can then use those Lund's to create data stores.
+
+01:10.080 --> 01:15.210
+So in order to do that I need to configure a dynamic discovery.
+
+01:15.210 --> 01:22.320
+I need to set up my host and tell it some information about the storage array so that it can query the
+
+01:22.320 --> 01:23.180
+storage array.
+
+01:23.190 --> 01:25.020
+So that's what I'm going to do right now.
+
+01:25.140 --> 01:31.200
+I'm going to put in the IP address of my eyes because the storage device and I'm going to go ahead and
+
+01:31.200 --> 01:38.190
+hit OK here and what it's going to tell me is that now a rescan of this storage adapter is recommended.
+
+01:38.210 --> 01:45.830
+Right now I've just created a new storage adapter so it wants to do a rescan and what a rescanned is
+
+01:45.860 --> 01:54.320
+basically it's your host reaching out to the storage array and finding out which ones are available.
+
+01:54.410 --> 01:56.620
+All right so let's go ahead and do that.
+
+01:56.650 --> 02:03.400
+Let's hit this button right here we're going to run a rescan and hopefully we'll see some Lund's appear
+
+02:03.850 --> 02:05.280
+down in this device's area.
+
+02:05.440 --> 02:06.510
+And there they are.
+
+02:06.560 --> 02:09.350
+Right so now we've got Lund's available.
+
+02:09.510 --> 02:20.040
+So just to kind of reiterate real quickly here we created a software I scuzzy storage adapter we configured
+
+02:20.040 --> 02:29.280
+in with dynamic discovery and dynamic discovery allows my ESX host to reach out to this storage array
+
+02:29.700 --> 02:37.340
+and query it and when it does querido after we perform a rescan the storage rate will return a list
+
+02:37.340 --> 02:40.040
+of all of the loans that has available.
+
+02:40.040 --> 02:46.900
+We can now utilize these the ones to create a data store and that's going to be the next step in our
+
+02:46.900 --> 02:50.020
+process here is to go ahead and create a VM EF-S data store.

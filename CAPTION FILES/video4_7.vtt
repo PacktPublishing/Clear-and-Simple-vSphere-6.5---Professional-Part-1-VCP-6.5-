@@ -1,0 +1,202 @@
+WEBVTT
+
+00:00.400 --> 00:05.180
+In this video I'll demonstrate how to create a vm a fast data store.
+
+00:05.490 --> 00:12.870
+So here I am in the Vee's for a web client and in my last video I actually created a software ice Gazi
+
+00:12.930 --> 00:16.990
+initiator for this particular ESX I host.
+
+00:17.080 --> 00:19.790
+So here's my software because the initiator.
+
+00:19.900 --> 00:24.190
+And through this software I suppose the initiator.
+
+00:24.190 --> 00:31.150
+I have a line that's available and having a LUN is the key starting point if I'm going to create a data
+
+00:31.150 --> 00:33.640
+store on VM FS I need that one.
+
+00:34.210 --> 00:37.200
+So I'm going to go ahead and click on datasource here.
+
+00:38.190 --> 00:43.170
+And I'm going to click on the little plus icon to create myself a new VM a fast data store.
+
+00:43.410 --> 00:45.120
+And at this point I'll name the data store.
+
+00:45.270 --> 00:46.940
+I'll just call it VM FSMO.
+
+00:47.160 --> 00:49.780
+And what I'm doing is I'm choosing a lane.
+
+00:50.010 --> 00:57.450
+So a lawn is just this big chunk of raw unformatted disk space that is available on my eyes because
+
+00:57.450 --> 01:05.610
+the storage array and my host can communicate with that nice cosy storage array using the ice Gazi software
+
+01:05.610 --> 01:08.540
+initiator that I created in the last video.
+
+01:10.210 --> 01:13.480
+Now I will choose the VM FS version.
+
+01:13.480 --> 01:22.600
+So if all of my hosts are going to be ESX I 6.5 I'm just going to go ahead and go with VM FSX if I still
+
+01:22.600 --> 01:30.250
+have some ESX size 6 or even older versions of VSX I hosts then I'll go with the IMF has five.
+
+01:30.460 --> 01:32.510
+All of my hosts are 6 5.
+
+01:32.560 --> 01:38.720
+I'm going to go with VM FSX and what I'm going to say is OK on this particular line.
+
+01:39.010 --> 01:44.440
+Do we want to use all of the space available on that line or do I want to say hey I'm just going to
+
+01:44.440 --> 01:49.490
+create a data store that is 15 gigs or something smaller.
+
+01:49.600 --> 01:52.800
+I'm just going to use all of the space on that particular line.
+
+01:53.570 --> 01:59.840
+And that I'm going to go ahead and hit Next here and what's going to actually happen in this scenario
+
+02:00.500 --> 02:03.370
+is a new data store is going to be created.
+
+02:04.450 --> 02:12.980
+That space that line is going to be formatted with the VM FS file system.
+
+02:13.010 --> 02:19.800
+So now I've got this VM half as demo data store available to this particular ESX I host.
+
+02:19.850 --> 02:24.140
+I've got a bunch of space available on it and I can start to create virtual machines and store them
+
+02:24.140 --> 02:25.510
+on that data store.
+
+02:25.580 --> 02:32.000
+Now here's the million dollar question I've created this data store and I did everything on this particular
+
+02:32.000 --> 02:33.570
+ESX host here.
+
+02:33.920 --> 02:35.360
+What about this host.
+
+02:35.540 --> 02:40.590
+We need shared storage for things like Wii motion Well look at that.
+
+02:40.820 --> 02:41.910
+Isn't that magic.
+
+02:42.860 --> 02:48.740
+The data store just simply appeared on this other ESX host.
+
+02:48.780 --> 02:50.060
+How is that possible.
+
+02:50.160 --> 03:00.950
+Well the other ESX host also is configured with a software I scuzzy adapter and that other software
+
+03:00.960 --> 03:06.890
+I scuzzy adapter is also configured to query the same storage array.
+
+03:07.050 --> 03:13.080
+So every so often it's going to do its own little rescan and it's going to detect any new BMF has volumes
+
+03:13.590 --> 03:18.690
+and they're going to just be available to this particular host.
+
+03:18.700 --> 03:26.170
+Now I have some options I can do things like masking if I don't want to make a particular datastore
+
+03:26.320 --> 03:31.510
+available to every host I can go into my storage system and control that.
+
+03:31.510 --> 03:37.320
+But I just wanted to show you that by default both hosts are connected to that storage array.
+
+03:37.480 --> 03:39.600
+Both hosts get access to that data store.
+
+03:39.610 --> 03:43.550
+I don't have to go to each individual host and mount that data store.
+
+03:43.900 --> 03:49.330
+If I'm done with my data store what I'll do is all right click it and I can choose to number one either
+
+03:49.360 --> 03:50.430
+unmount.
+
+03:50.500 --> 03:53.130
+So I'm going to go ahead and unmount this particular data store.
+
+03:53.200 --> 03:58.840
+And what you're doing when you unmount data stores you're saying something like hey from this particular
+
+03:58.840 --> 04:04.220
+host I do not need access to that data store and that's going to say OK.
+
+04:04.630 --> 04:11.970
+So if I refresh here now this host no longer is going to have access to the VMA fast demo data store
+
+04:12.400 --> 04:16.040
+and you can see here that the volume is now unmounted.
+
+04:16.150 --> 04:19.020
+So this particular host no longer has access to it.
+
+04:19.390 --> 04:24.100
+This host still does.
+
+04:24.160 --> 04:29.530
+Now the other thing that I could do is I code right click that data store and I could actually delete
+
+04:29.590 --> 04:30.900
+the data store.
+
+04:31.090 --> 04:38.140
+What you need to be aware of in this case is any data that is on that data store is going to be permanently
+
+04:38.150 --> 04:39.210
+deleted.
+
+04:39.550 --> 04:43.550
+All the data on that data source is going to be gone when I delete that data store.
+
+04:44.600 --> 04:49.670
+So if I choose to delete a data store I am permanently destroying that data store and all of the data
+
+04:50.030 --> 04:51.990
+that is contained within it.
+
+04:52.220 --> 04:53.720
+And now the data store is gone.
+
+04:53.730 --> 04:58.290
+If I go back to this other host that is or should be gone there as well.
+
+04:58.350 --> 05:00.800
+So that's how we create a vm a fast data store.
+
+05:00.840 --> 05:06.240
+What you're essentially doing is you are taking a LUN that's being presented by some kind of storage
+
+05:06.240 --> 05:14.110
+system formatting it with the VM FS file system and making it available to your ESX hosts.
+
+05:14.280 --> 05:16.600
+So that virtual machine files can be stored on it.

@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00.200 --> 00:05.260
+In this video I'll demonstrate how to configure net flow on a vees fair distributed switch.
+
+00:05.670 --> 00:11.340
+So here we are in the networking view of the vees faire web client and I'm going to go ahead and click
+
+00:11.340 --> 00:14.020
+on my VCP dash demo.
+
+00:14.220 --> 00:21.710
+These are distributed switch and under the configure tab you will see this net flow option here.
+
+00:21.720 --> 00:28.260
+Now if you're not familiar with net flow what this is going to do is it's going to allow the distributed
+
+00:28.260 --> 00:36.630
+switch to send traffic flows or essentially summaries of the traffic that's occurring to a server that
+
+00:36.630 --> 00:39.270
+collects all of those records.
+
+00:39.780 --> 00:43.590
+And that's what you would put in here the collector IP address.
+
+00:43.620 --> 00:54.420
+So let's say that my net flow server is at the address out 1.1 to 34 and I'll specify the port as well
+
+00:54.660 --> 01:02.580
+and then I'll also go ahead and configure an IP address for the VSE for a distributed switch itself.
+
+01:02.590 --> 01:05.540
+All right because here's essentially what's going to happen.
+
+01:05.700 --> 01:14.550
+The Wii's for a distributed switch is going to be collecting and producing all of these little reports
+
+01:14.580 --> 01:21.940
+called the traffic flows and it's going to have to somehow transmit those to a net flow collector.
+
+01:22.100 --> 01:27.110
+And by the fault of these for distributed switch doesn't have a management address or anything like
+
+01:27.110 --> 01:27.710
+that.
+
+01:27.980 --> 01:35.820
+So we need to establish a management IP address on this particular vse for a distributed switch.
+
+01:35.840 --> 01:42.920
+So we'll go ahead and we'll give it an IP address to allow the switch to actually start to send information
+
+01:42.920 --> 01:44.360
+to the net flow server.
+
+01:44.360 --> 01:48.150
+And so that's how you configure net flow it's pretty straightforward.
+
+01:48.170 --> 01:52.670
+You've got a number of different options for potential net flow servers.
+
+01:52.730 --> 01:59.060
+Probably the most commonly well-known one is solar winds but there's plenty of other options out there
+
+01:59.060 --> 02:04.790
+as well these days and you can use that to look at traffic patterns like for example which virtual machines
+
+02:04.790 --> 02:10.850
+are generating the most traffic what traffic is occurring on which ports and you can look at a historical
+
+02:10.850 --> 02:19.280
+record which can really help you to troubleshoot and analyze traffic patterns even though they may be
+
+02:19.340 --> 02:22.650
+very inconsistent or temporary in nature.
+
+02:22.670 --> 02:27.680
+This gives you the ability to kind of go back in time and look at what has happened historically.

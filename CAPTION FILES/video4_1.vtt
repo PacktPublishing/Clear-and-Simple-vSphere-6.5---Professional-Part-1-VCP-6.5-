@@ -1,0 +1,370 @@
+WEBVTT
+
+00:01.750 --> 00:09.440
+In this video we'll break down the two primary types of data stores offered on Wiis for VMA fests and
+
+00:09.600 --> 00:11.270
+Fs.
+
+00:11.300 --> 00:15.790
+Let's start by taking a look at a vm a fast data store.
+
+00:15.950 --> 00:22.730
+So there are many different types of storage arrays that you could potentially purchase in this particular
+
+00:22.730 --> 00:27.820
+slide we see and I scuzzy storage array that's been deployed now.
+
+00:27.830 --> 00:29.360
+There's a lot of other options out there.
+
+00:29.360 --> 00:32.840
+There's Fiber Channel Fiber Channel over Ethernet.
+
+00:33.050 --> 00:38.530
+And basically the big difference between those different options is the type of network that they use.
+
+00:39.760 --> 00:46.710
+In this case let's assume that it's an ice scuzzy storage array which is a vm a fast storage solution.
+
+00:46.870 --> 00:56.110
+Fiber Channel and Fiber Channel over Ethan that are also going to utilize the VM EF-S data stores.
+
+00:56.140 --> 01:02.980
+So for the moment let's just get rid of our ESX I host here on the left hand side of the screen and
+
+01:02.980 --> 01:07.250
+let's focus purely on the storage array itself.
+
+01:07.300 --> 01:09.500
+So this is a nice easy storage right.
+
+01:09.970 --> 01:13.700
+And you can see here some of the key characteristics.
+
+01:13.900 --> 01:20.760
+Our host is going to communicate with the storage array over an ethernet network and the storage array
+
+01:20.760 --> 01:24.730
+is equipped with two storage processors.
+
+01:24.730 --> 01:29.550
+We've got our nice little redundant connections here just in case one of those Ethernet switch fails
+
+01:30.080 --> 01:36.030
+or add cases storage processor files and just think of the storage processors those are like the brains
+
+01:36.030 --> 01:37.110
+of the operation.
+
+01:37.170 --> 01:37.610
+Right.
+
+01:37.680 --> 01:44.260
+And this is the same if you're dealing with I scuzzy or Fiber Channel olf or Fiber Channel over Ethernet.
+
+01:44.280 --> 01:49.140
+What's really different about those three different types is these types of switches that we're going
+
+01:49.140 --> 01:51.550
+to use here with fiber channel.
+
+01:51.600 --> 01:56.280
+We're going to use a fiber channel switch fabric with fiber channel everything that we're going to use
+
+01:56.280 --> 01:59.000
+an Ethernet switch and same thing with ice.
+
+01:59.040 --> 02:00.390
+We're going to use an Ethan at switch
+
+02:03.520 --> 02:07.450
+and then on the right hand side we've got the actual storage array itself right.
+
+02:07.450 --> 02:11.130
+So the storage processors are kind of like the brains of the storage array.
+
+02:11.140 --> 02:18.110
+They also provide connectivity and then we've got a shelf of disks called our aggregate and that's all
+
+02:18.110 --> 02:22.460
+the physical space that the storage arrays equipped with.
+
+02:22.550 --> 02:31.160
+And we're breaking down all of that physical space into smaller chunks called Lund's logical unit numbers.
+
+02:32.820 --> 02:38.390
+And that's all that alone is a chunk of space on a storage array.
+
+02:40.890 --> 02:49.140
+So now that we've kind of got the storage components figured out here we can see the ESX host also connects
+
+02:49.140 --> 02:50.730
+up to these Internet switches.
+
+02:50.760 --> 02:56.770
+Or maybe it's fiber channel and connect to the fiber channel switch fabric doesn't matter.
+
+02:57.450 --> 02:58.400
+In either case.
+
+02:58.590 --> 03:01.030
+It's kind of the same concept here.
+
+03:01.930 --> 03:11.050
+And so now that we've got an ESX host with a communications channel where it can speak to the storage
+
+03:11.050 --> 03:18.990
+array and we have these the ones that are created on the storage array now we're in a position where
+
+03:18.990 --> 03:28.590
+we can actually go ahead and start creating some VM fast data stores and the first step of that process
+
+03:28.590 --> 03:29.900
+is a significant step.
+
+03:29.970 --> 03:32.250
+We have to discover targets.
+
+03:32.280 --> 03:36.160
+So and I'll just kind of focus on ice Gazi at the moment.
+
+03:36.450 --> 03:38.870
+So here's my ESX I host.
+
+03:39.000 --> 03:46.620
+And I want to create a data store that is properly formatted that has the correct file system that's
+
+03:46.620 --> 03:50.010
+going to allow me to store virtual machines.
+
+03:50.010 --> 03:52.440
+And right now I can't do that right.
+
+03:52.440 --> 03:57.370
+These lines are chunks of raw unformatted disk space.
+
+03:57.390 --> 03:59.320
+These are just chunks of space.
+
+03:59.340 --> 04:05.790
+Think of them similar to you know a physical disk that you just pulled out of the box.
+
+04:05.880 --> 04:08.950
+There's nothing on these there's no file system present.
+
+04:09.030 --> 04:12.340
+I can't store anything on these disks just yet.
+
+04:12.360 --> 04:13.340
+Same thing with lawns.
+
+04:13.350 --> 04:16.270
+They have to be formatted before they can be used.
+
+04:19.920 --> 04:27.230
+With ice scuzzy we're going to use a method called automatic discovery or dynamic discovery and the
+
+04:27.230 --> 04:33.120
+first step is to configure the host with the target IP address.
+
+04:33.170 --> 04:39.470
+Right so we're going to tell our ESX host OK if you want to discover the available Lunds This is the
+
+04:39.470 --> 04:41.060
+address that you should query.
+
+04:41.130 --> 04:49.700
+You should query 10 not 1 1 0 or I'm sorry 10 not one not one not 10 which is the IP address of our
+
+04:49.700 --> 04:59.570
+storage processor at which point we can perform a rescan on our ESX I host and havock query that storage
+
+04:59.570 --> 05:06.650
+processor have it generate what we call a send target's request and storage processor will receive that
+
+05:06.650 --> 05:18.310
+query and it will respond with a list of all of the available Lund's that it has now my ESX host knows
+
+05:19.320 --> 05:20.090
+about.
+
+05:20.220 --> 05:26.210
+Essentially the blank disks that it can use right the big chunks of raw on format a disk space.
+
+05:26.310 --> 05:34.540
+There's three of them and now we can choose one of those lines and create a data store on it.
+
+05:34.540 --> 05:41.020
+And when a VM a fast data store is created what essentially happens is this the space on this line is
+
+05:41.020 --> 05:48.660
+going to get formatted with the VM FS file system and it is now going to be presented to my ESX I host
+
+05:48.690 --> 05:56.750
+as a data store and will call it data store one right and now I can start storing virtual machines on
+
+05:56.750 --> 05:57.230
+it.
+
+05:57.230 --> 06:05.470
+Right because the LUN has now been formatted with the VM FS file system and its now suitable storage
+
+06:05.860 --> 06:07.590
+for my virtual machines.
+
+06:09.230 --> 06:18.110
+So when you think about VM FS kind of think about that concept of we have lunch with VM FS We have Lund's
+
+06:18.470 --> 06:29.210
+LUNs are like a raw formatted disks and they have to be formatted with the VM FS file system.
+
+06:29.230 --> 06:39.280
+This is very different than the way that FS works and FS is a whole different ball game right.
+
+06:39.750 --> 06:48.300
+And so with VM FS let me jump back a slide with VM if these Lund's very much behave as if they were
+
+06:48.300 --> 06:49.640
+physical disks right.
+
+06:49.680 --> 06:58.680
+I can even have an ESX I host with no local storage and it can boot from one of these Lund's so we can
+
+06:58.680 --> 07:04.070
+even do stuff like that when it comes to a fast and the FS is very different right.
+
+07:04.080 --> 07:09.150
+I can not boot a host from unmanifest share thats not possible.
+
+07:10.390 --> 07:13.700
+There is no VM FS involved.
+
+07:13.700 --> 07:18.650
+When we start talking about a fast there's no VM fast there's no special file system right.
+
+07:18.780 --> 07:30.260
+The FS device owns its own file system it operates its own file system and what happens is the ESX host
+
+07:30.440 --> 07:33.130
+simply accesses a shared folder.
+
+07:33.350 --> 07:40.940
+We call these in FS export it's going to be some folder that we create on this NFL device or network
+
+07:40.940 --> 07:43.550
+attached storage device whichever you want to call it.
+
+07:45.560 --> 07:49.670
+That we are going to present very similar to a shared folder.
+
+07:50.000 --> 07:54.800
+We're going to present that to our Yes I hosts the ESX I host doesn't have to format it.
+
+07:54.980 --> 07:57.020
+There's no file system to be created.
+
+07:57.800 --> 07:58.090
+Right.
+
+07:58.370 --> 08:05.830
+And aside from the ability to boot from San there's really not a lot of feature differences between
+
+08:05.860 --> 08:08.660
+and manifest data store and a VM infestation story.
+
+08:08.740 --> 08:12.910
+Really the only two things that that FS does not support.
+
+08:13.000 --> 08:20.170
+I say the only two really key things are the ability to boot a host from San and the ability to create
+
+08:20.290 --> 08:22.040
+a raw device mapping.
+
+08:22.090 --> 08:27.220
+I can't give a virtual machine direct access to a loan because I don't have any wants.
+
+08:27.290 --> 08:31.690
+So raw device mappings are not support right.
+
+08:31.780 --> 08:39.190
+So let's take a look at how my ESX I hosts actually connect to an NFL data store and here on the left
+
+08:39.190 --> 08:43.990
+hand side we see a virtual machine with the virtual scuzzy controller.
+
+08:44.350 --> 08:51.520
+And just like we talked about in the storage virtualization video my guest operating system Windows
+
+08:51.520 --> 08:54.300
+in this case is going to generate scuzzy commands.
+
+08:54.670 --> 09:01.300
+And as they flow out of windows they're going to hit my virtual scuzzy controller and from there they're
+
+09:01.300 --> 09:03.870
+going to hit a storage adapter.
+
+09:04.390 --> 09:11.820
+And in this case the storage adapter is pointing towards this and EF-S data store that we've mapped.
+
+09:11.820 --> 09:18.790
+All right so the scuzzy commands are actually going to be pushed over to a VM kernel port and transmitted
+
+09:18.790 --> 09:29.130
+across the network to the IP address of this and FS system and the data store that we created was created
+
+09:29.130 --> 09:30.500
+on a specific folder.
+
+09:30.600 --> 09:33.660
+And the ESX I host has root access to that folder.
+
+09:33.660 --> 09:39.420
+So now as my virtual machine generates scuzzy commands they flow out they're prepared for transmission
+
+09:39.420 --> 09:46.640
+on the network they had a VM kernel port flow over an ethernet network hit the interface on the NFL
+
+09:46.640 --> 09:54.260
+system and are redirected to the VM DK for that virtual machine that exists.
+
+09:54.350 --> 09:56.420
+And I fast storage system
+
+10:01.360 --> 10:07.780
+so again really quickly just to review with VM how fast we want to think AVMA fast is having Lund's
+
+10:08.350 --> 10:16.790
+chunks of raw disk space that must be formatted and we can boot our hosts from those Lunts and give
+
+10:16.920 --> 10:19.410
+us the file systems already in place.
+
+10:19.540 --> 10:26.920
+There's no formatting required in the file system is already there and we're just basically accessing
+
+10:26.920 --> 10:31.330
+a shared folder that was created on that file system.
+
+10:31.380 --> 10:37.920
+So you'll notice if you ever create and manifest data store they don't take very long at all to be created
+
+10:37.920 --> 10:42.780
+because there's no formatting there's no zeroing There's nothing like that has just done you amount
+
+10:42.780 --> 10:46.190
+to a shared folder and you're finished.
+
+10:46.200 --> 10:52.830
+So in this lesson we learned about V.M. offense we learned that I scuzzy fiber channel and fiber channel
+
+10:52.860 --> 11:01.190
+over ethernet storage arrays utilize VM fast and within the storage array there are these raw formatted
+
+11:01.250 --> 11:10.010
+Lund's that the ESX hosts must format with the VM FS file system whereas NTFS has its own file system
+
+11:10.400 --> 11:14.620
+independent of ESX I and no formatting is required.

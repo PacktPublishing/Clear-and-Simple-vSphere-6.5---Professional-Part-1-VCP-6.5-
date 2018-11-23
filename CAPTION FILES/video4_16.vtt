@@ -1,0 +1,169 @@
+WEBVTT
+
+00:00.420 --> 00:04.440
+In this video I'll demonstrate how to configure storage IO control.
+
+00:04.710 --> 00:11.640
+So here I am at the storage view with these four web client and right click data store 1 and under the
+
+00:11.640 --> 00:17.460
+menu that comes up I'm going to choose configure storage IO control and I'm going to start by simply
+
+00:17.520 --> 00:20.210
+enabling storage IO control.
+
+00:20.340 --> 00:25.790
+And so what's going to happen once I enable storage IO control on this data store.
+
+00:26.010 --> 00:34.630
+It's going to start monitoring the available storage bandwidth for this particular data store and it's
+
+00:34.630 --> 00:39.130
+going to determine at what point congestion is actually occurring.
+
+00:39.810 --> 00:45.030
+So one of the things we're going to configure a storage IO control is shares we're going to set up a
+
+00:45.030 --> 00:53.250
+share structure basically a relative priority structure determining at which point congestion actually
+
+00:53.250 --> 00:58.650
+occurs and some AVMA are going to be throttled back and some victims are going to be given more storage
+
+00:58.650 --> 01:01.580
+bandwidth based on those share values.
+
+01:02.850 --> 01:06.090
+Well there has to know when to start actually enforcing those shares.
+
+01:06.090 --> 01:15.660
+So do we do it when we've hit 90 percent of peak throughput on this data store or do we specify a milliseconds
+
+01:15.720 --> 01:19.380
+of latency that we want to specifically configure.
+
+01:19.510 --> 01:23.820
+I'm going to go with 90 percent peak throughput and I'm going to hit.
+
+01:23.820 --> 01:25.480
+OK.
+
+01:25.590 --> 01:31.830
+So now we've not only enabled storage IO control in this data store but we've set a threshold saying
+
+01:32.250 --> 01:40.380
+when we hit 90 percent of peak through this data store that's when the share structure of storage IO
+
+01:40.380 --> 01:42.840
+control will be enforced.
+
+01:42.910 --> 01:52.130
+And so let's go back to our home screen here and what I want to do now is take a look at storage policies.
+
+01:52.260 --> 01:59.880
+So let's click on the V.M. storage policies button here and I'm going to go ahead and create a new VM
+
+01:59.880 --> 02:00.990
+storage policy.
+
+02:02.020 --> 02:06.850
+And I'm just going to name this policy storage I IO control normal.
+
+02:07.420 --> 02:14.830
+And what I'm going to use this policy for is kind of all my normal VAMC that should have roughly a basically
+
+02:14.830 --> 02:19.520
+a normal number of shares related to storage control.
+
+02:19.630 --> 02:25.630
+And so now I'm going to go ahead and add some rules to this and I'm going to add a storage IO control
+
+02:25.630 --> 02:33.490
+component saying that this particular storage policy will enforce a rule saying these VM should have
+
+02:34.150 --> 02:38.740
+a normal IO sherriffs allocation for storage IO control.
+
+02:38.980 --> 02:41.840
+And so we can see where that configuration is right here.
+
+02:41.860 --> 02:47.260
+Now as you can see here it's building some limits and reservations and stuff and with this as well it's
+
+02:47.260 --> 02:49.630
+not just simply shares.
+
+02:49.900 --> 02:56.450
+If I wanted to create a custom storage IO control rule I could do that as well.
+
+02:56.740 --> 03:04.450
+I could set the number of shares but I could completely avoid the concept of limits and reservations.
+
+03:04.450 --> 03:06.540
+So you can do this whatever way you want.
+
+03:06.730 --> 03:10.170
+I'm just going to keep it simple and go with what's built in here.
+
+03:10.330 --> 03:12.570
+And so I'm going to create a storage control.
+
+03:12.610 --> 03:21.510
+Normal IO shares allocation go with the one thousand shares with a 50 IOPS reservation and a 10000 IOPS
+
+03:21.510 --> 03:22.160
+limit.
+
+03:22.530 --> 03:24.780
+So now I'll just hit next tear.
+
+03:25.140 --> 03:30.850
+I'm not going to apply any rule sets based on tags at this point I'm going to go ahead.
+
+03:30.870 --> 03:36.720
+Next here here you can see the data stores that are actually compatible with this storage policy.
+
+03:36.720 --> 03:41.840
+I'm going to go ahead and hit next and then I'll get ready to complete.
+
+03:42.270 --> 03:42.710
+OK.
+
+03:42.720 --> 03:50.070
+So now that I've created a storage policy related to storage IO control let's go ahead do hostes and
+
+03:50.070 --> 03:55.820
+Klosters and I'm going to actually apply this storage policy to a virtual machine.
+
+03:55.890 --> 04:02.580
+Here's my VM VM one I'm going to go to heaven right click this virtual machine and under VM policies
+
+04:03.300 --> 04:12.330
+I can edit my VM storage policies and I can simply just go ahead and assign the I C normal VM storage
+
+04:12.330 --> 04:19.710
+policy to the entire virtual machine if I want or I can assign that storage policy to one individual
+
+04:19.710 --> 04:22.200
+virtual desk if I want.
+
+04:22.530 --> 04:28.940
+So for example if you have a sequel server and you want to assign a really high number of storage IO
+
+04:28.950 --> 04:34.590
+control shares to the sequel disk what the system disk maybe is normal you can do that.
+
+04:34.930 --> 04:37.490
+So you have a lot of granularity available here.
+
+04:37.860 --> 04:44.050
+And now my storage policy is actually associated with this particular virtual machine.
+
+04:44.100 --> 04:52.510
+So during times of storage contention this VM will get a normal number of storage IO control shares.
+
+04:52.580 --> 04:57.350
+I could have other Reems with a high number of shares and have other Reems with a low number of shares.
+
+04:57.540 --> 05:01.670
+And this will determine relative priority during times of congestion.

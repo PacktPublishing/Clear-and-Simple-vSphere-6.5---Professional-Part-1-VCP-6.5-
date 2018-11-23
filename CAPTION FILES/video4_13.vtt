@@ -1,0 +1,514 @@
+WEBVTT
+
+00:00.240 --> 00:09.330
+In this video I'll demonstrate how to configure VCM or virtual Sanne on a cluster of ESX hosts.
+
+00:09.400 --> 00:16.630
+So as you can see in movies for web client I've actually already created a cluster of ESX I hosts and
+
+00:16.630 --> 00:23.310
+that's really the primary prerequisite for virtual Sanne is to go ahead and create that cluster of VSX
+
+00:23.420 --> 00:24.100
+hosts.
+
+00:24.310 --> 00:26.330
+And so as you can see that's already done.
+
+00:26.530 --> 00:33.160
+And if we go to our configure menu here for the cluster itself you can see that with a cluster you can
+
+00:33.160 --> 00:40.540
+turn on features like DUI arrests and availability and you can also see under the cluster configuration
+
+00:40.540 --> 00:46.010
+area we have VCM and we have the ability to turn on the sand here.
+
+00:46.300 --> 00:52.690
+Now before I do that I'm going to configure a few prerequisites here for virtual Sam.
+
+00:53.080 --> 01:00.570
+So on this first host you can see that I've got one VM kernel port specifically marked for management.
+
+01:01.180 --> 01:08.680
+What I can also do is number one I could potentially edit this VM kernel poor and I could also market
+
+01:08.710 --> 01:11.330
+for virtual seán traffic.
+
+01:11.420 --> 01:14.160
+You can see I've got some other things marked here.
+
+01:14.320 --> 01:19.810
+I'm going to a marker for Virtual SAN and I'm going to do the same thing on my other ESX I host.
+
+01:19.810 --> 01:24.040
+Now this is fine for a lab environment in real life.
+
+01:24.030 --> 01:29.920
+What I really use the same VM kernel port for Wii motion for management for virtual sand.
+
+01:29.950 --> 01:31.750
+Probably not.
+
+01:31.910 --> 01:36.580
+There's going to be a lot of Virtual SAN traffic flowing over this network.
+
+01:37.000 --> 01:44.740
+And so in real life what I would probably do is set up a VM kernel port on a dedicated virtual switch
+
+01:44.980 --> 01:46.490
+just for VCM.
+
+01:46.750 --> 01:52.150
+I would use dedicated physical switches just for San.
+
+01:52.390 --> 01:54.880
+That's really the best way to do this in real life.
+
+01:54.880 --> 02:02.290
+You're going to want a dedicated 10 gig network between your ESX hosts just for VCM But this is just
+
+02:02.290 --> 02:02.750
+a.
+
+02:02.910 --> 02:04.870
+And I'm only using this to demonstrate.
+
+02:04.870 --> 02:11.200
+So what I'm going to do in this case is I just need to establish a VM kernel port that is marked to
+
+02:11.200 --> 02:12.840
+carry VCM traffic.
+
+02:13.180 --> 02:14.190
+And I have done that.
+
+02:14.380 --> 02:16.190
+So back to my cluster.
+
+02:16.390 --> 02:19.440
+Now I've got my prerequisites satisfied.
+
+02:19.570 --> 02:27.610
+I'm going to go ahead and simply turn on the SAN and so will hit the configure button here.
+
+02:29.140 --> 02:31.620
+And I'll choose which services I want to enable.
+
+02:31.630 --> 02:36.400
+Now notice the first service that's shown D-do application and compression.
+
+02:36.400 --> 02:41.190
+This is only available in an all flash configuration.
+
+02:41.320 --> 02:45.150
+This only works for all flash disk groups.
+
+02:45.160 --> 02:50.280
+What I'm creating here in my demo is a hybrid VCR configuration.
+
+02:50.290 --> 02:56.810
+I've got some flash disks that I'm going to use for caching and or as a write buffer.
+
+02:57.890 --> 03:02.030
+And I've got some traditional magnetic hard disks.
+
+03:02.030 --> 03:10.520
+So in my case I'm not going to enable the space saving features of duplication and compression.
+
+03:10.520 --> 03:14.820
+The other thing that's kind of special about my environment.
+
+03:14.990 --> 03:17.620
+I've only got two ESX I hosts.
+
+03:18.050 --> 03:25.130
+This is the absolute bare minimum for Virtual SAN is what we call a two host cluster.
+
+03:25.130 --> 03:29.270
+And we're actually going to have a special third host call the witness how is that we're going to have
+
+03:29.270 --> 03:38.720
+to create in this scenario and that significantly increases the complexity of this configuration.
+
+03:38.720 --> 03:44.000
+So here's what I want to tell you for your own environments.
+
+03:44.000 --> 03:51.110
+This isn't a VCR class and I will be putting out a VCR in class soon but what it will say is that you
+
+03:51.110 --> 03:55.320
+don't really want to build a cluster this way unless you have to.
+
+03:55.580 --> 03:59.070
+Maybe it's just some small little remote branch and you only have two hosts.
+
+03:59.070 --> 04:00.130
+They're fine.
+
+04:01.140 --> 04:08.370
+Most cases you're going to be looking for at least four physical hosts in your VCM cluster.
+
+04:08.380 --> 04:17.170
+So what I'm actually going to do is I'm going to pause this for a moment and come back to this will
+
+04:17.170 --> 04:23.710
+enable VSAN in just a moment and I'm actually going to spin up a third ESX I host so that I can create
+
+04:23.740 --> 04:29.560
+a more fully functional vse and cluster.
+
+04:29.680 --> 04:33.850
+So I paused my recording and added the third ESX host.
+
+04:33.970 --> 04:40.600
+And here you can see it down to the left coast 1 9 2 1 6 8 8 1 9 9 1 0 4.
+
+04:41.050 --> 04:48.810
+So at the moment I'm not going to configure for domains or stretch clusters or a To host of VCM cluster.
+
+04:48.910 --> 04:54.070
+What I'm going to do is I'm simply going to add the three ESX I hostes that you see here.
+
+04:54.400 --> 05:01.960
+Now you'll notice that one of the hosts my new host actually doesn't have a VM kernel port with Virtual
+
+05:01.960 --> 05:05.310
+SAN traffic enabled at the moment.
+
+05:05.530 --> 05:08.720
+So I have to go back and resolve that.
+
+05:09.040 --> 05:16.510
+So I'm going to hit cancel here we'll go to this ESX I host will grab the VM kernel port for management.
+
+05:16.840 --> 05:23.500
+And again we're just going to simply edit the management VM kernel port and add vse San as a traffic
+
+05:23.530 --> 05:28.440
+type on that I'm going to add Wii motion as well.
+
+05:28.480 --> 05:32.470
+We'll go ahead and hit OK and let's try to enable VCM.
+
+05:32.500 --> 05:33.680
+One more time.
+
+05:33.880 --> 05:39.750
+I'm going to go to my H.A. cluster again and ahint configure for VCO in general.
+
+05:40.170 --> 05:46.390
+I'm going to enable the SAN and I'm going to add these three ESX I hosts to V san and now they all have
+
+05:46.390 --> 05:47.350
+the kernel port.
+
+05:47.650 --> 05:53.560
+So I'll be enabling VCM on all three of these ESX I hosts and I'll hit next here.
+
+05:54.260 --> 06:02.590
+And OK so here we see all of the disks that are available on these ESX I hosts.
+
+06:02.590 --> 06:09.850
+And so first off we've got some flash disks and we've also got some traditional hard disk drives and
+
+06:09.850 --> 06:15.700
+we can see here we've got disks that are flash capacity and we've got disks that are hard disk drive
+
+06:15.730 --> 06:17.260
+capacity.
+
+06:18.040 --> 06:20.900
+And so let me break them down by host.
+
+06:20.900 --> 06:21.330
+All right.
+
+06:21.330 --> 06:33.600
+So on host one hundred and host 103 You can see on each of these ESX hosts that I have one flash disk
+
+06:35.490 --> 06:37.910
+and two hard disks.
+
+06:37.920 --> 06:42.930
+Now if we take a look at the third host Let's expand this guy.
+
+06:42.930 --> 06:47.490
+This is the third house is the one that I've added after the fact that it's also the one that seems
+
+06:47.490 --> 06:49.650
+to be giving me the most problems.
+
+06:49.650 --> 06:52.580
+Notice that it has three hard disks.
+
+06:52.620 --> 06:54.980
+That's not going to work.
+
+06:55.080 --> 07:02.640
+We can't do this with three hard disks if you're doing the scene in a hybrid configuration.
+
+07:02.640 --> 07:07.500
+Each host is going to have a group of disks called the disk group.
+
+07:07.500 --> 07:15.270
+Each host is going to have at least one disk group and the disk group has to be made up of somewhere
+
+07:15.270 --> 07:24.350
+between 1 and seven hard disk drives and one flash disk the flash disk is going to be our read cache.
+
+07:24.360 --> 07:29.310
+It's going to be our right buffer every disk group needs one.
+
+07:29.310 --> 07:34.030
+So what I can do is I can actually take this in the lab environment.
+
+07:34.170 --> 07:39.290
+To be honest with you I don't actually have any flash storage capacity in my lab environment.
+
+07:39.360 --> 07:46.080
+What I've done is I've actually gone in here and manually kind of overridden this and marked these drives
+
+07:46.080 --> 07:52.620
+as flash even though they're not actually flash it's just a way for me to simulate having flash storage
+
+07:53.010 --> 07:55.990
+in a non-Flash storage environment.
+
+07:56.400 --> 08:05.270
+So anyways now I've got on each host two hard disk drives one flash drive and all three of my hosts
+
+08:05.270 --> 08:07.820
+should look identical they do.
+
+08:07.820 --> 08:16.520
+So now I get to pick and choose which disks do I actually want to claim for virtual San which disks
+
+08:17.270 --> 08:24.560
+are going to be part of my capacity here which discs are going to be part of my cash here.
+
+08:24.620 --> 08:29.840
+And you'll notice that the only ones that can be the cash here are the flash devices.
+
+08:29.840 --> 08:36.500
+So on each host I'm going to go ahead and identify this what we're doing here is something called Manual
+
+08:36.540 --> 08:37.600
+clay mode.
+
+08:37.940 --> 08:44.600
+So I'm going in and I'm individually specifying what each discs should be used for and if there are
+
+08:44.600 --> 08:49.810
+other discs that should not be dedicated to vse and I just won't utilize those disks.
+
+08:49.960 --> 08:50.430
+OK.
+
+08:50.540 --> 08:56.740
+So for each of these hosts Now I have two hard disk drives that are in the capacity tier.
+
+08:56.900 --> 09:00.170
+I have one flash disk that is in the cache tier.
+
+09:00.230 --> 09:07.640
+I'm going to go ahead and hit next and finish and it's going to tell me OK here's your total raw physical
+
+09:07.640 --> 09:11.340
+storage capacity 60 gigs.
+
+09:11.430 --> 09:14.880
+I have a total of 6 10 gig desks.
+
+09:14.940 --> 09:23.550
+That is my raw storage capacity my total VCR data store cash is 30 gigs I got 30 gigs of cash available
+
+09:24.210 --> 09:27.810
+and I have now created a Wii sand closter.
+
+09:27.840 --> 09:35.130
+So what this Wii San Kloster is going to do is it is going to take all of the capacity of those hard
+
+09:35.130 --> 09:43.320
+disks and kind of combine them together and create this one big data store that is shared by all of
+
+09:43.320 --> 09:47.090
+my ESX hosts that are part of that vse and cluster.
+
+09:47.190 --> 09:52.830
+They can all leverage that combined storage capacity of all of those hard disks.
+
+09:53.270 --> 09:58.420
+And as you can see here we've got manual clay mode I didn't enable the duplication or compression.
+
+09:58.440 --> 10:07.170
+I cannot enable those because this is a hybrid vs hand configuration using both Flash and traditional
+
+10:07.170 --> 10:10.190
+magnetic disks.
+
+10:10.530 --> 10:16.920
+I can manage my disks here if I want to I can evacuate data from a disk I can get everything off of
+
+10:16.920 --> 10:19.240
+a disk and replace it if I need to.
+
+10:19.260 --> 10:22.620
+That's where I'm going to do all of this sort of stuff is in disk management.
+
+10:22.680 --> 10:28.380
+And like I said I'm coming up with a VPN course so if you want to see some more of these specific operations
+
+10:28.440 --> 10:32.530
+check that out you can configure things like file domains.
+
+10:32.530 --> 10:36.080
+We're not really going to get into all of that here at this point.
+
+10:36.090 --> 10:39.990
+What I do want to show you is two more quick things.
+
+10:39.990 --> 10:46.780
+Number one we can see RV Ceann health here at the summary screen for the cluster.
+
+10:46.800 --> 10:53.250
+So if I expand that I can get a good idea of what's going on and my visa and cluster and I've got some
+
+10:53.250 --> 10:58.620
+kind of warning here so I could I could check that out and you can see some of these issues that are
+
+10:58.620 --> 10:59.340
+up here right.
+
+10:59.340 --> 11:03.510
+We've got performance dynast we've got a time synchronization problem.
+
+11:03.630 --> 11:09.400
+So we've got some issues with our San cluster we can look at VCM performance here as well.
+
+11:09.450 --> 11:14.810
+And at this point the performance services disabled you have to manually enable that.
+
+11:15.120 --> 11:21.660
+The other thing that I did want to quickly show you here is under monitor we've got a few issues triggered
+
+11:22.080 --> 11:26.880
+that are related to the san right now and we can also go under monitor we can see the health of our
+
+11:26.880 --> 11:32.090
+cluster so we can relatively easily dig into these health issues right here.
+
+11:32.180 --> 11:35.960
+And I've got a time synchronization problem that we need to resolve.
+
+11:36.120 --> 11:40.220
+I've got a hardware compatibility issue that I need to resolve.
+
+11:40.440 --> 11:46.690
+And so like I said I'm kind of a I'm kind of shoes stringing this thing together inside of a lab environment.
+
+11:46.710 --> 11:50.650
+So it's not exactly the ideal Visi an environment.
+
+11:50.730 --> 11:52.660
+But here's what I really want to show you.
+
+11:52.660 --> 11:53.730
+Capacity.
+
+11:53.830 --> 12:00.340
+This is going to show me exactly how much storage capacity I have available within my data store.
+
+12:02.100 --> 12:07.860
+So in this case I can see hey here's the size of my data store at 60 gigs of raw storage.
+
+12:07.860 --> 12:15.660
+Now as I start mirroring data I'm not actually going to have 60 gigs of usable space much like a RAID
+
+12:15.660 --> 12:16.410
+array.
+
+12:16.620 --> 12:18.900
+The sand sort of works the same way.
+
+12:18.960 --> 12:22.950
+I've got a mirror data in order to maintain reliability.
+
+12:23.250 --> 12:25.830
+So you see 60 gigs of usable space here.
+
+12:25.920 --> 12:28.480
+That's not what you're actually going to get.
+
+12:28.590 --> 12:36.930
+You're going to probably get somewhere closer to 30 gigs or maybe even less depending on how careful
+
+12:36.930 --> 12:41.330
+you are about preserving your data in the event of a failure.
+
+12:41.370 --> 12:46.920
+So that's as far as we are going to delve into Virtual SAN right now the things that you really need
+
+12:46.920 --> 12:48.310
+to remember for the exam.
+
+12:48.540 --> 12:57.030
+You can utilize the local capacity of many hosts to form a V San data store and it essentially combines
+
+12:57.030 --> 13:03.420
+their usable space to create this one big share data store that they all have available on each of our
+
+13:03.420 --> 13:04.510
+hosts.
+
+13:04.590 --> 13:07.040
+We are going to have disk groups.
+
+13:07.140 --> 13:13.890
+So let's actually go back to the cluster here and under monitor V San physical disks we can see a disk
+
+13:13.890 --> 13:16.220
+group for host 103.
+
+13:16.290 --> 13:22.610
+We can see another disk group for a host 104 and we can see another descript for host 100.
+
+13:22.740 --> 13:26.380
+Those disk groups are going to exist on my ESX my hosts.
+
+13:26.550 --> 13:31.210
+And those are going to represent the storage capacity that is available the VSE.
+
+13:31.680 --> 13:38.500
+We also saw that we had to create a VM kernel port on each host tagged for Virtual SAN traffic.
+
+13:38.550 --> 13:44.340
+That's how virtual machines read data stored in VSE and that is actually physically located on other
+
+13:44.340 --> 13:45.320
+hosts.
+
+13:45.840 --> 13:50.250
+And so those are some of the key concepts that you want to bear in mind as you prep for the exam.
+
+13:50.400 --> 13:58.020
+One final note there is both a hybrid the sand configuration and an all flash hand configuration with
+
+13:58.020 --> 13:59.590
+hybrid.
+
+13:59.680 --> 14:07.410
+You have a mixture of flash and magnetic desk's with an all flash configuration.
+
+14:07.430 --> 14:15.390
+It is 100 percent Flash and that gives us the ability to configure all sorts of other features on VCM
+
+14:15.410 --> 14:23.960
+as well things like duplication things like compression things like rate raid five rates sex.
+
+14:24.080 --> 14:30.500
+It gives us the ability to implement other space saving mechanisms in order to reduce some of the costs
+
+14:30.500 --> 14:32.680
+of that off flash storage.

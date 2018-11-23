@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00.220 --> 00:05.900
+In this video I'll demonstrate how to use the different TCAP piece tax that are available in these fairs
+
+00:05.900 --> 00:07.770
+6.5.
+
+00:07.840 --> 00:14.230
+So I'm going to start by navigating two hosts and Klosters and I'm going to pick my first ESX host here
+
+00:15.470 --> 00:25.060
+and under configure we can see networking and TCAP IP configuration and other TCAP IP configuration.
+
+00:25.060 --> 00:28.840
+We can see the default TCAP IP stack.
+
+00:28.870 --> 00:34.990
+You can see the provisioning TZP IP stack and we can see the emotion TCAP IP stack.
+
+00:35.020 --> 00:38.760
+So these are the three TCAP IP stacks that we have in here.
+
+00:38.760 --> 00:47.050
+By default I've got our little edit button up here a little pencil icon that we can click on to configure
+
+00:47.050 --> 00:51.350
+things like for example a different DNS server.
+
+00:52.440 --> 00:55.670
+Under routing we can configure a different default gateway.
+
+00:56.040 --> 00:58.720
+And so let's just kind of think about what we have here.
+
+00:59.490 --> 01:08.800
+What we can do for Wii motion in this case is set a different default gateway set a different DNS server.
+
+01:09.150 --> 01:17.070
+And so if I want to direct my VM ocean traffic over some different physical network I can do that by
+
+01:17.070 --> 01:24.480
+placing it on a different TCAP IP stack then my default with IP stack which has a different DNS server
+
+01:24.960 --> 01:26.230
+a different default gateway.
+
+01:27.980 --> 01:31.600
+And that's the purpose of these different TCAP IP stacks.
+
+01:31.640 --> 01:38.930
+So we see here our Wii motion TCAP IP stack and if we go under networking and we take a look at our
+
+01:38.930 --> 01:45.690
+VM kernel adapters here here we see a management VM kernel port.
+
+01:45.740 --> 01:51.700
+Let's take a quick look at this VM kernel port and we don't want to show you here is under the VM kernel
+
+01:51.700 --> 01:56.520
+ports themselves we have the ability to change the TCAP IP stack.
+
+01:56.860 --> 02:02.950
+So if I were to create an additional VM kernel port let's add in a new VM kernel port and let's just
+
+02:02.950 --> 02:11.070
+pretend that this VM kernel port is going to be dedicated specifically to the motion.
+
+02:11.170 --> 02:18.850
+So I'm going to pick which network to place does VM kernel Poorna just pick a network at random here.
+
+02:20.980 --> 02:21.870
+And I'll hit next.
+
+02:21.870 --> 02:24.480
+Now in real life you wouldn't pick a network at random.
+
+02:24.620 --> 02:27.520
+You put it on the appropriate the Lamb.
+
+02:27.540 --> 02:29.760
+So here's why the motion VM kernel port.
+
+02:30.450 --> 02:35.640
+Then here I can go ahead and say OK for this particular VM kernel port I'm going to choose a different
+
+02:35.640 --> 02:37.080
+TCAP IP stack.
+
+02:37.230 --> 02:39.750
+The VM motion TZP IP stack.
+
+02:39.870 --> 02:48.150
+So as I establish new VM kernel Porus I can choose the appropriate IP stack that supports those services
+
+02:48.600 --> 02:52.910
+and basically force that VM kernel ports traffic over a different network.
+
+02:53.160 --> 03:00.430
+And you can even create your own custom TCAP IP stacks and vees for 6.5.
+
+03:00.450 --> 03:05.730
+So that's what you really need to understand for the exam is the fact that we have these different TCAP
+
+03:05.730 --> 03:08.010
+IP stacks available now.
+
+03:08.070 --> 03:14.270
+Are Here are two TCAP IP configuration and by default we have our default ECPA IP stack which is used
+
+03:14.280 --> 03:20.240
+for everything provisioning and then our Wii motion TCAP IP stack.
+
+03:20.640 --> 03:26.400
+And again the motion traffic is all going to go through the false stack unless I specifically go to
+
+03:26.400 --> 03:31.010
+that VM kernel part and tell it to use the Wii motion TCAP IP stack.

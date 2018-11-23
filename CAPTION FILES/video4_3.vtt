@@ -1,0 +1,235 @@
+WEBVTT
+
+00:00.810 --> 00:04.950
+In this video I'll demonstrate how to create an NFL data store.
+
+00:05.200 --> 00:09.970
+So before we get started I want to show you some of the methodology that I'm using in my lab environment
+
+00:10.060 --> 00:10.740
+here.
+
+00:10.990 --> 00:19.600
+What I've actually done is gone ahead and created an NFL server on a Windows Server 2012 are two instance.
+
+00:19.600 --> 00:26.910
+And here you can see a little folder that I created and I'm simply sharing this folder out Viana FS.
+
+00:27.010 --> 00:32.840
+So I went ahead and installed this role on this particular Windows Server.
+
+00:33.070 --> 00:39.040
+And the reason I want to show you this before we get going is because of a few configuration things
+
+00:39.040 --> 00:41.730
+that you need to bear in mind.
+
+00:41.740 --> 00:50.380
+Right so I created a little folder called and afast Demel I in this case decided to do no server authentication.
+
+00:50.380 --> 00:52.030
+Now this depends are you doing.
+
+00:52.030 --> 00:59.540
+And if this version 3 or are you doing an offensive version for one if you're doing NFC version 3.
+
+00:59.560 --> 01:03.010
+It does not support Kerberos authentication.
+
+01:03.010 --> 01:10.720
+So in this case I have basically not required any kind of server authentication and other permissions
+
+01:11.860 --> 01:19.960
+what I could do is I could specifically add certain IP addresses that I want to allow to access this
+
+01:20.050 --> 01:30.220
+and FS storage so I could limit access to this data store by specifying certain IP addresses where you
+
+01:30.220 --> 01:35.140
+can see what I've done in this case is I've allowed all machines read write access.
+
+01:35.530 --> 01:38.050
+And I'm actually allowing root access as well.
+
+01:38.140 --> 01:39.810
+And that's another thing that's important.
+
+01:39.970 --> 01:46.070
+So with N.F. US version 3 you have to allow root access to the data store.
+
+01:46.180 --> 01:49.240
+So that has to actually be setup on my NFL server.
+
+01:49.240 --> 01:53.510
+Now all of this changes with NFC version four out one with FS 4.1.
+
+01:53.590 --> 02:02.650
+We can utilize Kerberos authentication to go ahead and allow access to that data store but I'm using
+
+02:02.650 --> 02:04.340
+NFC version 3 in this case.
+
+02:04.390 --> 02:08.770
+So I'm going to go ahead and launch my vees fair web client.
+
+02:09.190 --> 02:15.070
+And once I get logged in I'm going to pick one of my ESX hosts and I'm going to go to that particular
+
+02:15.070 --> 02:22.960
+host and create a new NFL data store and when I create that new data store what I'm essentially going
+
+02:22.960 --> 02:30.100
+to do is I am going to point to that folder that I just created on that Windows Server.
+
+02:30.100 --> 02:32.760
+That's how an NFL data store works right.
+
+02:32.800 --> 02:40.090
+My ESX host does not own the file system it does not manage the file system the file system is managed
+
+02:40.090 --> 02:42.800
+by that Windows Server that I just showed you.
+
+02:42.820 --> 02:51.070
+So what I am essentially doing with an NFL data store is I am granting access to a shared folder on
+
+02:51.070 --> 02:52.300
+some other server.
+
+02:52.570 --> 02:57.850
+So let's go to my first host here and under storage I'm going to click on datasource.
+
+02:57.880 --> 03:03.050
+We are at the configure tab and here we have the option to create a new data store.
+
+03:03.430 --> 03:05.900
+And so I'm going to click on NTFS.
+
+03:06.160 --> 03:08.740
+I'm going to choose FS version 3.
+
+03:08.770 --> 03:10.450
+I'm going to set my data source.
+
+03:10.870 --> 03:15.490
+I'm going to put in the folder that I created on my Windows Server and the IP address of the Windows
+
+03:15.490 --> 03:16.960
+server itself.
+
+03:16.960 --> 03:19.770
+And that's really it with of US version 3.
+
+03:19.780 --> 03:22.800
+These are very simple and easy to create.
+
+03:22.840 --> 03:26.890
+And so now let's take a look here's my new data store and.
+
+03:27.940 --> 03:31.920
+And my data store is an NFL version 3 data store.
+
+03:31.960 --> 03:34.780
+You can see here I've got a warning on the data store.
+
+03:34.780 --> 03:39.790
+Let's take a look at what that warning is it should be a space warning because there's really not very
+
+03:39.790 --> 03:47.320
+much space at all on that server to actually utilize HARRIS So Data Store usage on disk.
+
+03:47.350 --> 03:49.220
+Yup that's what the problem is.
+
+03:49.330 --> 03:52.970
+There's only four points one for gigs of space available.
+
+03:53.350 --> 04:00.220
+And the reason is because there's only 4.1 four gigs available on the actual Windows server itself.
+
+04:00.220 --> 04:02.820
+So that's what we're seeing here.
+
+04:02.920 --> 04:04.720
+The storage capacity.
+
+04:04.720 --> 04:09.960
+So anyways it's a relatively straightforward process to create an NFL data store.
+
+04:10.090 --> 04:14.020
+So here in the storage view we see the new data store that I've just created.
+
+04:14.020 --> 04:21.280
+And at the moment you can see it's only connected to one ESX host but I have multiple ESX I hosts that
+
+04:21.310 --> 04:24.910
+could potentially also utilize that data store.
+
+04:24.910 --> 04:30.340
+So what I'm going to do is I'm going to go to the storage view.
+
+04:30.340 --> 04:35.800
+I'm going to Right-Click that data store and I'm going to choose to mount the data store two additional
+
+04:35.800 --> 04:43.570
+hosts and and pick the other hosts that should also have access to that data store and go ahead and
+
+04:43.570 --> 04:46.360
+mounted to these other data stores.
+
+04:46.630 --> 04:54.310
+So that way we can access this data store on multiple ESX hosts not just the one ESX host that are used
+
+04:54.310 --> 04:56.840
+to create it and there we go.
+
+04:56.890 --> 04:57.990
+It looks like it worked.
+
+04:57.990 --> 05:07.030
+So if I go to this second ESX host I now see the NFL demo data store available here as well.
+
+05:07.090 --> 05:12.670
+And then finally the last thing I want to show you if we go to our data store under the storage view
+
+05:13.120 --> 05:19.340
+we can also choose to unmount this data store and I can pick which hosts I'm going to unmount it from.
+
+05:19.390 --> 05:27.190
+Now the main thing to bear in mind here is that when you unmount a NFC data store you're not actually
+
+05:27.190 --> 05:32.760
+deleting any of the data contained in that data store remember.
+
+05:32.920 --> 05:42.670
+In this case my NFA server is on a Windows Server 2012 virtual machine Well I don't own that file system.
+
+05:42.660 --> 05:46.090
+My ESX I host do not own that file system.
+
+05:46.170 --> 05:48.270
+They cannot destroy that folder.
+
+05:49.270 --> 05:56.770
+So if I go hadn't unmount the data store what I'm essentially saying is that my ESX I hosts no longer
+
+05:56.770 --> 06:04.360
+need access to that particular data store but all the files and folders that exist in that folder are
+
+06:04.360 --> 06:05.530
+still going to be there.
+
+06:05.560 --> 06:07.260
+So I'm not actually destroying the data.
+
+06:07.600 --> 06:11.910
+I'm simply unmounting the data store from these ESX I hosts.
+
+06:12.160 --> 06:17.890
+And now you can see the data store is no longer available to them but any files that were created in
+
+06:17.890 --> 06:20.130
+that data store will still exist.
+
+06:20.200 --> 06:22.420
+They will not be destroyed when it unmounting.

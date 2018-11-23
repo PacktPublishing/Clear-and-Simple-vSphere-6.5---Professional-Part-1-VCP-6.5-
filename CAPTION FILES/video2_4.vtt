@@ -1,0 +1,247 @@
+WEBVTT
+
+00:00.400 --> 00:07.170
+In this video I'll demonstrate some of the security settings that you can modify for your ESX I hosts.
+
+00:07.320 --> 00:12.540
+And so here you can see I've logged into my Vee's for a web client and I'm at the hosts and Klosters
+
+00:12.540 --> 00:19.470
+view and I'm going to pick this ESX I host here and go ahead and click on the configure tab and this
+
+00:19.470 --> 00:25.710
+is where you're basically going to configure everything for this ESX I host whether it's virtual switches
+
+00:25.710 --> 00:31.230
+or storage adapters or security settings.
+
+00:31.340 --> 00:37.580
+And so our security settings are primarily listed here under the security profile.
+
+00:37.760 --> 00:39.940
+And let's start with the first option here.
+
+00:39.980 --> 00:41.820
+The host firewall.
+
+00:42.140 --> 00:48.380
+So this firewall is for traffic coming in and out of the host itself or for functions that the host
+
+00:48.380 --> 00:50.270
+itself needs to perform.
+
+00:50.270 --> 00:54.170
+This is not a firewall that protects your virtual machines.
+
+00:54.560 --> 00:58.250
+None of the rules in here are going to be applied to any of your VM.
+
+00:58.400 --> 01:05.480
+They're strictly applied to the VM kernel ports of the ESX I host itself.
+
+01:05.920 --> 01:13.090
+And so let's take a look let's edit this firewall and I'm going to modify a rule for S-sh And so here
+
+01:13.090 --> 01:15.510
+we see our S-sh server.
+
+01:15.910 --> 01:24.250
+So the ESX host isn't as as a server meaning I can launch PADI or some other similar program and connect
+
+01:24.250 --> 01:28.260
+to a command line interface on this ESX I host.
+
+01:28.430 --> 01:36.260
+I may want to take that traffic and limit it to a certain range of IP addresses like let's say my management
+
+01:36.260 --> 01:43.090
+network has 1 9 2 1 6 8 dot 10 dot 0 slash 24.
+
+01:43.100 --> 01:49.730
+Now what I can do is I can take that S-sh port and I can limit it to the addresses that I know should
+
+01:49.730 --> 01:52.380
+specifically be able to connect to it.
+
+01:52.480 --> 01:52.900
+Right.
+
+01:52.970 --> 01:59.030
+And I can do the same thing for a traffic like DHC P or DNS traffic.
+
+01:59.170 --> 02:02.990
+Here's our DHP client Here's wake on LAN.
+
+02:02.990 --> 02:07.940
+Here is DNS a.p and so on and so forth.
+
+02:08.210 --> 02:15.080
+So if there are certain types of traffic that you know should be limited to certain IP addresses such
+
+02:15.080 --> 02:23.410
+as DNS for example and you want to go ahead and modify this host firewall to limit the attack surface
+
+02:23.450 --> 02:30.580
+as much as you possibly can by restricting that traffic to the appropriate IP address ranges.
+
+02:31.070 --> 02:38.060
+And by the way if you end up doing host profiles all of these firewall settings are captured in a host
+
+02:38.060 --> 02:45.500
+profile so that can be a great way to standardize all of these firewall settings across a large number
+
+02:45.500 --> 02:47.350
+of ESX hosts.
+
+02:47.490 --> 02:54.270
+And that way you don't have to configure this every time you set up a new ESX host.
+
+02:54.780 --> 02:59.160
+Also on the host we can configure services.
+
+02:59.550 --> 03:05.040
+So let's click at 8 here and what we're basically doing is stopping and starting services.
+
+03:05.460 --> 03:13.450
+So if we look at S-sh right now the services stopped and I have it configured to start and stop manually.
+
+03:13.570 --> 03:20.400
+So if I want to I can manually start the S-sh service and now it's running.
+
+03:20.630 --> 03:24.960
+But the best practice is actually to leave S-sh stopped.
+
+03:25.500 --> 03:28.300
+But I'm just enabling it now to demonstrate the process.
+
+03:28.320 --> 03:35.760
+And if I want to I could also say start and stop with host that way any time this host is booted up
+
+03:36.630 --> 03:39.420
+the S-sh service will be started automatically.
+
+03:42.470 --> 03:44.510
+And there's a number of other services here.
+
+03:44.690 --> 03:51.700
+So what we want to do is consider what services are we actually using and stop any services that we
+
+03:51.700 --> 03:58.390
+don't actually need running to limit the attack surface the third setting that I want to show you on
+
+03:58.390 --> 04:08.350
+the screen is called lockdown mode and lockdown mode is used to basically restrict how an ESX host can
+
+04:08.350 --> 04:10.090
+be communicated with.
+
+04:10.090 --> 04:16.480
+So if I hit it here on the lockdown mode screen I can choose from three modes right by default lockdown
+
+04:16.480 --> 04:17.510
+mode is disabled.
+
+04:18.970 --> 04:25.900
+If I choose normal lockdown mode what that means is that this host will only be accessible through the
+
+04:25.900 --> 04:34.840
+local DC Why that local console or through the center which means I will no longer be able to launch
+
+04:34.840 --> 04:37.270
+party and connect to it via S-sh.
+
+04:37.270 --> 04:42.770
+I will no longer be able to launch the host client and connect to it directly with that.
+
+04:42.970 --> 04:50.890
+The purpose of normal lockdown mode is to force all of the management traffic to come through the center.
+
+04:51.590 --> 04:58.460
+But if something goes wrong and Visa enters unable to connect to my host then I can always go to the
+
+04:58.460 --> 05:03.410
+local console and connect to it there and turn off lockdown mode if I need to.
+
+05:03.740 --> 05:09.590
+With strict lockdown mode this is by far the most restrictive option and you'll see it will warn you
+
+05:09.590 --> 05:18.150
+here it'll say the direct console user interface service is stopped meaning if I choose strict lockdown
+
+05:18.150 --> 05:23.010
+mode the only way I can connect to that host is through the center.
+
+05:23.010 --> 05:24.540
+That's it.
+
+05:24.540 --> 05:30.690
+If the center fails and I can't get it back up I'm going to have to re-image this host because the only
+
+05:30.690 --> 05:33.580
+way that this host can be accessed is through the center.
+
+05:33.720 --> 05:34.750
+And that's it.
+
+05:34.770 --> 05:37.610
+So strict is very very strict.
+
+05:37.640 --> 05:38.250
+Right.
+
+05:38.700 --> 05:42.510
+And so in most cases we'll probably go with disabled or normal.
+
+05:42.510 --> 05:46.100
+I'm going to go ahead and disable this and hit OK here.
+
+05:46.530 --> 05:48.020
+So that's lockdown mode.
+
+05:48.060 --> 05:54.480
+And the last thing I want to show you here is under authentication services we can join our ESX I host
+
+05:54.480 --> 05:55.740
+to a domain.
+
+05:55.930 --> 05:59.880
+So I'm going to join this host to the lab that local domain.
+
+05:59.880 --> 06:01.980
+This is an active directory domain.
+
+06:02.240 --> 06:08.560
+My user name is going to be administrator and he any active directory domain that Ben will work here.
+
+06:08.800 --> 06:12.070
+I'll put in my password and hit OK.
+
+06:12.360 --> 06:24.850
+And now issue will the join this ESX host to the domain.
+
+06:25.270 --> 06:29.650
+And here you can see we've successfully joined the lab at local domain.
+
+06:29.650 --> 06:35.480
+The purpose of this is really I don't want to share our root credentials.
+
+06:35.680 --> 06:40.690
+So if we have our ESX I hope that is not a member of any domain.
+
+06:40.750 --> 06:45.200
+You can still create some local users inside that ESX I host.
+
+06:45.310 --> 06:47.660
+But most people tend not to do that.
+
+06:47.740 --> 06:55.100
+And what you see a lot of in the real world is people sharing those root credentials for the ESX host.
+
+06:55.240 --> 07:01.030
+So rather than checking out those credentials we'll go ahead and join our host to a domain and that
+
+07:01.030 --> 07:09.190
+way we can allow people to authenticate to this ESX host using their actual active directory domain
+
+07:09.190 --> 07:10.120
+credentials.

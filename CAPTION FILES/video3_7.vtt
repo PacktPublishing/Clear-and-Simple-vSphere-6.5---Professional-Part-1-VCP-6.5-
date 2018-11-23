@@ -1,0 +1,76 @@
+WEBVTT
+
+00:01.490 --> 00:07.950
+In this video I'll demonstrate how to migrate virtual machines to a VSE fair distributed switch.
+
+00:08.040 --> 00:15.320
+So here you can see I'm at the networking screen of the Vee's fair web client and I have my VCP Dasch
+
+00:15.320 --> 00:21.200
+demo distributed switch that I created in a prior video and I'm going to right click that distributed
+
+00:21.200 --> 00:24.770
+switch and choose migrate the OEM's to another network.
+
+00:24.770 --> 00:31.580
+Now this is one way in which you can take a bunch of virtual machines that are on some specific network
+
+00:32.330 --> 00:40.400
+like for example VM network or another distributed port group even and you can migrate a bunch of virtual
+
+00:40.400 --> 00:47.330
+machines to a different network like my new network that I created called the VM network DP.
+
+00:47.870 --> 00:50.530
+So I'm actually going to change my source network.
+
+00:50.540 --> 00:52.340
+I'm going to make it.
+
+00:52.340 --> 00:54.050
+Rick Creasey dist.
+
+00:54.080 --> 00:59.210
+PGE because I'm pretty sure that's where my virtual machines are currently connected.
+
+00:59.220 --> 01:02.440
+And our next and there we go.
+
+01:02.520 --> 01:08.030
+I've got a virtual machine that's connected to that group that I can then go ahead and migrate off of
+
+01:08.030 --> 01:10.840
+that port group and onto this new port group.
+
+01:10.850 --> 01:17.060
+So if you had a whole lot of virtual machines that you needed to migrate from one distributed switch
+
+01:17.060 --> 01:23.810
+to another or from a standard switch to a distributed switch this would be a really fast way that you
+
+01:23.810 --> 01:27.370
+could do a bunch of those migrations.
+
+01:27.380 --> 01:34.820
+The other option is to go to hosts and Klosters grab your virtual machine go to settings on the virtual
+
+01:34.820 --> 01:40.820
+machine and under edit settings you can simply change the network that the virtual machine is attached
+
+01:40.820 --> 01:41.980
+to there as well.
+
+01:42.260 --> 01:47.810
+So here you can see I've got two network adapters I can go ahead and change those to whatever network
+
+01:47.840 --> 01:48.940
+I want.
+
+01:49.340 --> 01:55.250
+And so now I've connected them both back up to VM network and I'm going to hit OK there so you can do
+
+01:55.250 --> 01:58.440
+it one virtual machine at a time in this manner.
+
+01:58.670 --> 02:03.940
+Or you can do a mass migration using the first method I showed you.

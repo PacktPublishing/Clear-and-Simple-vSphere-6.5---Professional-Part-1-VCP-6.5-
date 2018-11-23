@@ -1,0 +1,433 @@
+WEBVTT
+
+00:00.270 --> 00:06.310
+In this video we'll look at how to configure policies for a fair distributed switch.
+
+00:06.720 --> 00:11.570
+So we'll start by going to the networking view and the Vee's for web client.
+
+00:11.970 --> 00:18.740
+And under networking we're going to take a look at a port group that we created in the last video called
+
+00:18.740 --> 00:19.770
+The V.M. network.
+
+00:19.800 --> 00:29.570
+DP And I actually have a little typo in the name so I'm going to edit this poor group quickly change
+
+00:29.620 --> 00:34.180
+the name we're going to go through on we're going to set some policies on this poor group.
+
+00:34.420 --> 00:38.160
+So we'll start off by modifying the name of the group here.
+
+00:38.560 --> 00:44.140
+And you can see here the port binding method that has been chosen is static.
+
+00:44.140 --> 00:48.460
+This is appropriate in the vast majority of scenarios.
+
+00:48.490 --> 00:54.340
+So a static port binding means is that when a virtual machine is connected to this virtual switch it
+
+00:54.340 --> 00:58.080
+will get a specific port and it will keep that specific port.
+
+00:58.210 --> 01:06.320
+Even if the virtual machine powers off with dynamic binding when the virtual machine powers off the
+
+01:06.350 --> 01:12.750
+porch that it was using is released and you can see here that dynamic port binding is deprecated.
+
+01:12.830 --> 01:14.750
+So we don't wanna use that.
+
+01:14.750 --> 01:18.430
+We also don't want to use a femoral port binding.
+
+01:18.440 --> 01:22.520
+That's really only useful in situations like when the center is down.
+
+01:22.520 --> 01:30.550
+So we're going to stick with static port binding and we're going to stick with a lastic port allocation.
+
+01:30.590 --> 01:37.130
+Now what a lastic poor allocation means is that this virtual switch is going to start out with a total
+
+01:37.130 --> 01:38.450
+of eight ports.
+
+01:38.480 --> 01:42.590
+That means that 8 virtual machines can connect to this virtual switch.
+
+01:42.950 --> 01:50.780
+When those eight ports are exhausted it is elastic meaning it will expand or contract as needed.
+
+01:50.780 --> 01:56.880
+So when those eight ports are exhausted eight more will simply be created at that time.
+
+01:58.990 --> 02:00.940
+And we're not going to mess with the network resource pool.
+
+02:00.940 --> 02:05.300
+We'll talk about that a little bit more when we get into network IO control.
+
+02:05.590 --> 02:10.970
+Here we can see some of the Advanced Settings like do we want to allow the blocking of porks.
+
+02:11.110 --> 02:16.620
+Do we want to override different policies like traffic shaping in the lands and things like that.
+
+02:16.660 --> 02:21.470
+We're going to leave those as is and take a look at some of the security policies.
+
+02:21.480 --> 02:28.620
+So first off we've got promiscuous mode and you can see that I've said that to reject promiscuous mode
+
+02:28.620 --> 02:34.860
+is used if you wanna do something like hook up a sniffer or hook up an intrusion prevention system and
+
+02:34.860 --> 02:37.280
+monitor all of the traffic.
+
+02:37.530 --> 02:42.680
+You can do that with promiscuous mode but as you can imagine it's a security risk.
+
+02:42.720 --> 02:51.690
+So under normal circumstances we're going to leave promiscuous mode set to reject with MAC address changes
+
+02:51.960 --> 02:53.070
+and forge transmits.
+
+02:53.070 --> 02:55.500
+You can see those are also set to reject.
+
+02:55.530 --> 03:03.240
+So these two settings allow me to do is if I changed them to accept I will have the ability to spoof
+
+03:03.330 --> 03:09.820
+MAC addresses I can actually go into my operating systems of my virtual machines and brightest spoofed
+
+03:09.840 --> 03:14.740
+MAC address and the virtual switch will allow that to work.
+
+03:16.340 --> 03:22.930
+So this might be necessary for certain software licensing requirements or something along those lines
+
+03:22.940 --> 03:30.860
+like for example if you have a software that is licensed based on a particular MAC address and then
+
+03:30.860 --> 03:36.500
+you take that machine and you convert it from physical the virtual the MAC address is going to change
+
+03:36.830 --> 03:40.670
+and therefore you may need to spoof that MAC address.
+
+03:40.670 --> 03:47.480
+But in most cases reject is fine here and that is the security best practice is to set MAC address changes
+
+03:47.480 --> 03:54.860
+and forge transmits to reject and prevent Mac spoofing.
+
+03:54.960 --> 03:57.260
+We will come back to traffic shaping.
+
+03:57.270 --> 04:00.390
+Let's take a look at Vians.
+
+04:00.390 --> 04:02.050
+So we've got a couple options here.
+
+04:03.300 --> 04:10.050
+I can set a specific VPN on this port group and that means that all traffic coming from any of the victims
+
+04:10.050 --> 04:17.480
+connected to this poor group that traffic will be tagged with Vili's and 50 or Villalon one or villans
+
+04:17.500 --> 04:19.950
+and 60 or whatever I configure here.
+
+04:20.000 --> 04:25.280
+This is called the Virtual switch tagging and it's exactly what it sounds like when traffic hits the
+
+04:25.280 --> 04:33.960
+virtual switch the virtual switches that pending a violent attack whereas Villalon trunking gives me
+
+04:33.960 --> 04:37.120
+the ability to pass multiple villans through.
+
+04:37.380 --> 04:46.650
+So for example if I'm actually configuring a LAN inside of my guest operating system VPN trunking will
+
+04:46.650 --> 04:53.010
+pass that Vili's and tags through the virtual switch without modifying it.
+
+04:53.040 --> 04:59.460
+This is useful if I'm actually going into my operating system and configuring VLAN tags.
+
+04:59.490 --> 05:01.170
+They're.
+
+05:01.290 --> 05:05.520
+And then finally private villans will take a look at this a little bit later.
+
+05:07.020 --> 05:11.320
+But for the moment I'm not going to do any of the land tagging here.
+
+05:12.330 --> 05:15.430
+Here's my nic teaming and fail over policies.
+
+05:15.900 --> 05:19.300
+So we went through the purpose of these in a previous lecture.
+
+05:19.680 --> 05:26.610
+But you can see here that different nicknaming methods so I can route based on IP hash where this is
+
+05:26.610 --> 05:34.990
+going to choose a physical adapter based on both the source and destination IP source Mac hash will
+
+05:35.020 --> 05:42.380
+choose a physical adapter based on the source mac address of the virtual machine route based the originating
+
+05:42.380 --> 05:49.730
+virtual port will again choose a physical adapter based on the originating virtual port that the virtual
+
+05:49.730 --> 05:55.380
+machine is connected to and route based on physical Nic load.
+
+05:55.400 --> 06:01.000
+This is a method that's only available with the Vee's fair distributed switch.
+
+06:01.370 --> 06:10.130
+And so what route based on physical neck load will do is every VM will use a specific physical adapter
+
+06:10.910 --> 06:18.380
+if an adapter starts to reach a certain threshold of traffic that it's actually starting to slow down
+
+06:18.380 --> 06:24.920
+or the adapters becoming congested route based on physical neck load will analyze the workload of those
+
+06:24.920 --> 06:33.250
+physical adapters and move virtual machines around so that no specific physical adapter becomes over
+
+06:33.240 --> 06:34.240
+wild.
+
+06:34.550 --> 06:39.890
+So this is a very intelligent way to load balance and it's an option that's only included in the Wii's
+
+06:39.890 --> 06:41.360
+fair distributed switch.
+
+06:43.110 --> 06:45.080
+Here's where we can enable beacon probing.
+
+06:45.090 --> 06:54.030
+Do we want our ESX hosts to send beacon probes out each physical adapter so that they can detect upstream
+
+06:54.060 --> 07:01.050
+network failures and leave it at link status only here do we want to notify the physical switches of
+
+07:01.050 --> 07:02.690
+changes that occur.
+
+07:03.390 --> 07:10.950
+And if a physical adapter fails and is then restored Do we want to move traffic back to that physical
+
+07:10.950 --> 07:11.750
+adapter.
+
+07:12.490 --> 07:16.260
+And in this case I'm going to go ahead and choose yes.
+
+07:16.300 --> 07:24.730
+So those are some of our different policies that we can implement on a distributed port group.
+
+07:24.730 --> 07:34.060
+We can also enable net flow if we want to send network traffic information to a net flow collector.
+
+07:34.060 --> 07:35.080
+We can do that.
+
+07:35.170 --> 07:39.280
+We'll also have to configure some additional settings to make net flow work.
+
+07:39.310 --> 07:47.380
+So if you want to enable that flow you also need to modify some settings on the distributed switches
+
+07:47.390 --> 07:50.810
+self.
+
+07:50.890 --> 07:56.130
+So we'll go to net flow and Chauvet switch rather than just on a port group.
+
+07:56.320 --> 08:03.490
+And in order to enable that flow you know put in the IP address of your net flow server the port you'll
+
+08:03.490 --> 08:08.060
+also assign an IP address to the distributed switches self.
+
+08:08.410 --> 08:14.500
+So that way the distributed switch can actually communicate with your net flow server.
+
+08:14.860 --> 08:22.690
+And so what this is actually used for is to send records of how much traffic is occurring on which poor
+
+08:23.170 --> 08:27.030
+What times of day is specific traffic type occurring.
+
+08:27.130 --> 08:32.440
+You can query and dig deep into network traffic patterns using net flow.
+
+08:32.470 --> 08:38.300
+So if you want to send that information to a net flow collector Here's where you'll configure that setting.
+
+08:39.660 --> 08:41.920
+This is where we can configure a health check.
+
+08:42.020 --> 08:49.760
+Furbies fair distributed which now most of the time you want to leave this disable because it is a security
+
+08:49.760 --> 08:53.660
+best practice to leave the health check disabled.
+
+08:53.720 --> 09:01.760
+However if you're creating a new distributed switch it's not a bad idea to go ahead and enable this
+
+09:01.760 --> 09:08.690
+health check initially just to make sure that the configuration of your distributed switch from a VPN
+
+09:08.690 --> 09:15.440
+perspective from an empty view perspective from a nic teaming perspective that those settings actually
+
+09:15.440 --> 09:18.450
+match up with the physical network.
+
+09:18.480 --> 09:26.930
+That's the purpose of a health check is to go ahead and provide a way to determine is my configuration
+
+09:26.930 --> 09:31.110
+consistent with what we have in the physical network.
+
+09:31.160 --> 09:33.060
+So let's go back to our port group here.
+
+09:34.860 --> 09:38.270
+And take a look at our policies.
+
+09:38.350 --> 09:43.770
+OK so we looked at all of our security settings we looked at things like promiscuous mode mac address
+
+09:43.770 --> 09:45.290
+changes forge transmits.
+
+09:45.290 --> 09:46.750
+We looked at our villans settings.
+
+09:46.770 --> 09:56.050
+We looked at our teaming and fail over settings and finally we have traffic filtering and marking.
+
+09:56.050 --> 10:02.290
+So if I'd like to I can create some traffic filtering and marking rules.
+
+10:02.710 --> 10:07.350
+And the purpose of these traffic filtering and marking rules is twofold.
+
+10:07.660 --> 10:08.350
+Number one
+
+10:11.270 --> 10:21.510
+clean the software if I have certain traffic that is high priority I can assign a class of service tag
+
+10:22.180 --> 10:27.740
+and a DCP tag class of service for Lehre to DCP for Lehre 3.
+
+10:28.120 --> 10:32.980
+And what these values are is essentially quality of service Haresh.
+
+10:33.220 --> 10:40.660
+So the highest you can go with S.O.S is 7 the high single with the SEP 63 what you're doing is you're
+
+10:40.660 --> 10:44.210
+assigning a quality of service tag.
+
+10:44.230 --> 10:52.900
+So when the traffic actually leaves the ESX host and hits the physical network the physical network
+
+10:52.900 --> 10:55.930
+will read these values that we've configured here.
+
+10:55.990 --> 10:58.880
+So let's make it four and twenty.
+
+10:59.230 --> 11:06.940
+And the physical network will actually respect these tags that we've applied and prioritize this traffic
+
+11:06.940 --> 11:09.330
+appropriately.
+
+11:09.360 --> 11:14.820
+So if you've ever configured quality of service in a physical router or physical switch you're probably
+
+11:14.820 --> 11:22.270
+familiar with these concepts what we're doing here is we're tagging certain traffic based on a rule
+
+11:22.630 --> 11:23.770
+that we define.
+
+11:23.770 --> 11:33.540
+Like for example source and destination port source and destination IP address.
+
+11:33.560 --> 11:39.500
+Now I can set up these rules to tag certain traffic with certain quality of service headers so that
+
+11:39.500 --> 11:45.220
+the traffic is properly prioritized by the physical network itself.
+
+11:46.660 --> 11:48.410
+That's what tagging does.
+
+11:48.490 --> 11:54.850
+And if these very distributed which you can also choose to block I should say to drop
+
+11:57.380 --> 11:59.460
+or allow certain traffic.
+
+11:59.840 --> 12:07.890
+So if there are certain traffic like for example let's say there is no way that we should be getting
+
+12:08.370 --> 12:10.860
+certain types of traffic in our environment.
+
+12:10.860 --> 12:22.570
+Like for example if the protocol is ICMP I just want to block all ICMP traffic from any source address
+
+12:22.570 --> 12:27.780
+to maybe a specific range of IP addresses.
+
+12:27.880 --> 12:29.120
+I can do that here.
+
+12:30.000 --> 12:39.190
+So for example here is a rule that says any UDP traffic coming from port 22 coming from any IP address
+
+12:39.220 --> 12:48.640
+that is destined for any machine in the 192 down 168 got 10 0 network will be blocked that traffic will
+
+12:48.640 --> 12:50.830
+be dropped.
+
+12:50.830 --> 12:55.660
+And so that's how we can go ahead and establish these network traffic rules that will either drop or
+
+12:55.660 --> 12:59.000
+allow certain types of traffic.
+
+12:59.350 --> 13:03.790
+And then finally this is an option you probably won't use very much but under miscellaneous you can
+
+13:03.790 --> 13:06.240
+choose to block all ports in the distributed port group.
+
+13:06.340 --> 13:11.740
+So you essentially just want to block all of the traffic on a distributed porker you can do that there.

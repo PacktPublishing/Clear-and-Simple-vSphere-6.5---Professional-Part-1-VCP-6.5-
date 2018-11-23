@@ -1,0 +1,253 @@
+WEBVTT
+
+00:00.240 --> 00:08.550
+In this video I'll demonstrate the single sign on service of the center server appliance and so let's
+
+00:08.550 --> 00:14.970
+go ahead and start by just pointing out that I am currently logged in as administrator at least ferret
+
+00:14.970 --> 00:16.520
+out local.
+
+00:16.530 --> 00:25.160
+This is my single sign on Administrator account and so because I'm logged in as that user I have the
+
+00:25.160 --> 00:33.270
+ability to go here under administration and I can go to a single seinen and I can do things like create
+
+00:33.330 --> 00:41.640
+new identity sources and you can see here there is a built in identity source that's already been created
+
+00:41.640 --> 00:43.890
+called VSD for that local.
+
+00:43.930 --> 00:51.510
+Now this is an identity source that is local to the V Center server and by identity source.
+
+00:51.510 --> 00:56.010
+It's simply a repository of usernames and passwords.
+
+00:56.220 --> 01:02.340
+So if I decide later on I want to start creating roles and permissions I can create those roles and
+
+01:02.340 --> 01:08.550
+permissions for the users that are contained within my identity sources.
+
+01:10.740 --> 01:17.810
+So I may want to just use divvies for it at local domain but probably not in most cases.
+
+01:17.820 --> 01:24.280
+We're going to add some sort of identity source and most of the time it's going to be active directory.
+
+01:26.670 --> 01:33.060
+And we see also we've got active directory as an old app server supported here that's used to support
+
+01:33.060 --> 01:34.430
+some legacy environments.
+
+01:34.440 --> 01:40.500
+So we're going to stick with integrated windows authentication but it also supports open ended up as
+
+01:40.500 --> 01:42.380
+an identity source as well.
+
+01:43.340 --> 01:48.800
+I'm going to go ahead and hit Next here and what it's going to tell me is that my single sign on server
+
+01:48.800 --> 01:57.380
+is not currently joined to a domain I can't add active directories and identity source without joining
+
+01:57.680 --> 01:59.960
+my single sign on server to a domain.
+
+02:00.200 --> 02:09.290
+So I'm going to go ahead join my domain is going to be lapped up local username is going to be administrator
+
+02:09.350 --> 02:12.080
+whatever my domain admin credentials are.
+
+02:12.080 --> 02:16.730
+That is what I'm going to use here and I'll go ahead and hit OK.
+
+02:19.730 --> 02:25.440
+And now what I need to do is I need to actually reboot my V Center server.
+
+02:25.460 --> 02:29.390
+You can't join the domain without rebooting the sender chevaux.
+
+02:29.690 --> 02:35.270
+So I'm going to go ahead and click on actions here and go ahead and reboot my V Center shover and I'll
+
+02:35.270 --> 02:40.220
+pause the recording for a moment while this happens and then we'll come back and we'll take a look to
+
+02:40.220 --> 02:46.470
+validate that our center server has been successfully joined to our active directory domain.
+
+02:47.350 --> 02:47.980
+OK.
+
+02:47.990 --> 02:52.250
+So my reboot of the center is now complete.
+
+02:52.730 --> 03:00.560
+So I'm going to go ahead and log back in and validate that we have successfully joined the domain.
+
+03:00.560 --> 03:07.590
+We can verify that the center has been successfully joined to the domain under our administration screen.
+
+03:08.410 --> 03:16.330
+And if we go down to deployment and system configuration we can click on notes pick our Precentor server
+
+03:17.800 --> 03:23.030
+and verify that yes it has been successfully joined to an active directory domain.
+
+03:23.230 --> 03:28.810
+So we're in great shape here are our the center instances now joined to the domain.
+
+03:28.810 --> 03:37.330
+So I'm going to go right back to the administration screen and under single sign on our click configuration.
+
+03:37.520 --> 03:45.520
+And now now go ahead and add a new identity source and I'll choose Active Directory integrated windows
+
+03:45.520 --> 03:46.350
+authentication.
+
+03:46.350 --> 03:47.280
+I'll what next.
+
+03:47.500 --> 03:54.990
+And here's the domain name Lab. that local and I'm going to use the machine account to join the domain.
+
+03:55.000 --> 03:58.420
+I'll finish.
+
+03:58.570 --> 03:59.510
+And there we go.
+
+03:59.560 --> 04:07.720
+We now have active directory as a possible identity source within single sign on.
+
+04:08.170 --> 04:14.960
+So now if we go ahead and go over to our users and groups let's take a quick look around.
+
+04:15.430 --> 04:19.230
+Here's the built in VSE ferret out local domain.
+
+04:19.630 --> 04:28.480
+And is our built in single sign on administrator administrator at least for non-local in our dropdown.
+
+04:28.480 --> 04:36.130
+We'll now also see labrat local as a domain and we'll be able to see usernames from the lab dot local
+
+04:36.130 --> 04:36.830
+domain.
+
+04:39.880 --> 04:47.830
+And so here's the administrator at Lab local that's the active directory account that I want to focus
+
+04:47.830 --> 04:48.910
+on for the moment.
+
+04:51.350 --> 04:58.680
+And so let's go ahead and head over here to rolls under Access control and under administrator you can
+
+04:58.680 --> 05:06.180
+see we have some users that are straight from our views for at out local domain and under Read-Only
+
+05:06.200 --> 05:08.990
+we can see the users that have that permission.
+
+05:09.200 --> 05:16.490
+And so I can also see who has the no access role we have all these built in roles we have all the sambil
+
+05:16.490 --> 05:18.350
+roles.
+
+05:18.470 --> 05:25.940
+Let's go all the way to hostes in Klosters and I'm going to give one of my active directory users some
+
+05:25.940 --> 05:27.900
+permissions.
+
+05:27.990 --> 05:35.110
+So here at the V Center server level I'm going to go to permissions and I'm going to create a new permission
+
+05:39.060 --> 05:47.180
+and I'm going to give the administrator role on the center server and all of the Vee's center server
+
+05:47.210 --> 05:54.220
+child objects including all my hosts and Klosters and V-Amp and data stores I'm going to choose a user
+
+05:54.220 --> 05:59.000
+from my laptop local domain administrator user.
+
+05:59.410 --> 06:03.890
+I'll add and I'll hit OK.
+
+06:04.990 --> 06:13.190
+And now I've just created a permission for administrator app lab local That gives it administrator privileges
+
+06:13.390 --> 06:14.980
+throughout my entire environment.
+
+06:16.650 --> 06:20.940
+And I'll go ahead and hit OK here and then I'm just going to log out.
+
+06:22.050 --> 06:26.830
+And take a moment to validate that my identity source is actually working.
+
+06:27.680 --> 06:36.680
+So I'll log in as administrator at Lab local with my password.
+
+06:44.690 --> 06:49.120
+And let's just make sure that we have the full administrator set of permissions.
+
+06:49.160 --> 06:54.740
+Once we actually get into the environment here now one of the first things you might notice is it looks
+
+06:54.740 --> 06:55.730
+a little bit different.
+
+06:55.760 --> 06:56.120
+Right.
+
+06:56.120 --> 07:00.800
+Notice that the Vee's for a web client layout is in the defaults.
+
+07:00.840 --> 07:06.740
+And when I log in as Administrator Vee's for it out local I've already actually removed some of these
+
+07:06.740 --> 07:14.240
+little panes here to give myself more room and I've unpinned the work in progress pain I've unpinned
+
+07:14.270 --> 07:15.790
+the alarm's pain.
+
+07:16.460 --> 07:23.390
+But you can see we're in here and I have permissions I can do things like place a host in maintenance
+
+07:23.390 --> 07:29.410
+mode and there's no way I would be able to do that if I didn't have the appropriate permissions.
+
+07:29.450 --> 07:34.310
+So let's test this out by placing a host in the maintenance mode and then we'll take the host out of
+
+07:34.310 --> 07:35.090
+maintenance.
+
+07:38.990 --> 07:39.890
+So there we go.
+
+07:39.890 --> 07:46.190
+We've now joined Arvi center server to an active directory domain and we've set that active directory
+
+07:46.190 --> 07:48.770
+domain up as an identity source.
+
+07:48.770 --> 07:55.310
+We've created some permissions for one of those active directory users and we validated that those permissions
+
+07:55.310 --> 07:56.340
+are actually working.

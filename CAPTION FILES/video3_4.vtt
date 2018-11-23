@@ -1,0 +1,310 @@
+WEBVTT
+
+00:01.600 --> 00:07.970
+In this video we'll learn about some of the features that can be provided with this fair standard and
+
+00:08.100 --> 00:16.580
+for distributed virtual switches and some of these features are unique to the distributed switch only.
+
+00:16.610 --> 00:20.070
+So with these fair there's two different types of virtual switches.
+
+00:20.240 --> 00:27.380
+The standard virtual switch comes with all licensing additions and it has a basic feature set where
+
+00:27.380 --> 00:35.120
+as the VSE for a distributed switch has an enhanced feature set and is only available with the Enterprise
+
+00:35.150 --> 00:37.680
+plus licensing addition.
+
+00:37.700 --> 00:43.580
+So I'd differentiate between the two as we go through all of these features and learn about them.
+
+00:43.880 --> 00:54.210
+And the first feature that we're going to talk about here is discovery protocols either CTP or LDP CTP
+
+00:54.240 --> 01:03.900
+stands for Cisco discovery protocol and LDP stands for link layer discovery protocol and these are useful
+
+01:03.900 --> 01:08.280
+features that have been around for a long time on physical networking hardware.
+
+01:09.390 --> 01:17.500
+What these discovery protocols are used for is to learn information about other networked devices that
+
+01:17.500 --> 01:21.730
+are connected like for example in our little diagram here.
+
+01:21.760 --> 01:27.400
+Assume that this ESX I host has a nice first Daynard switch.
+
+01:28.150 --> 01:35.200
+So we've got the first standard switch configured on the ESX host and that vees first standard switch
+
+01:35.200 --> 01:41.600
+has some physical connections to a Cisco switch or a physical switch.
+
+01:42.760 --> 01:51.280
+We can configure Cisco discovery protocol to allow it to discover some of the characteristics of the
+
+01:51.280 --> 01:52.690
+physical switches cell.
+
+01:52.810 --> 02:00.470
+We're going to allow it to learn information about the physical switch things like the IP address of
+
+02:00.470 --> 02:01.970
+the switch.
+
+02:01.970 --> 02:07.900
+Things like which physical adapter is connected to what physical switch port.
+
+02:08.050 --> 02:08.290
+Right.
+
+02:08.360 --> 02:13.230
+So VM neck zero is connected to you know a physical switch port 0 1.
+
+02:13.230 --> 02:18.920
+VM Nick one is connected to switch port 0 slash to right and that can help us to make sure that we don't
+
+02:18.950 --> 02:21.110
+accidentally unplug the wrong cable.
+
+02:22.790 --> 02:25.870
+So that's CTP Cisco discovery protocol.
+
+02:26.450 --> 02:37.100
+And that is a Cisco specific discovery protocol that is available on of these very standard switch LDP
+
+02:37.850 --> 02:45.340
+is basically the exact same thing except for it's not a Cisco specific technology right.
+
+02:45.440 --> 02:52.810
+LDP stands for link layer discovery protocol and it's only supported on the vees for distributed switch.
+
+02:53.030 --> 02:55.480
+But it does basically the exact same thing.
+
+02:55.520 --> 03:00.250
+It just allows you to discover information about the other devices on the network
+
+03:05.790 --> 03:08.910
+when we're using a VSE fair distributed switch.
+
+03:09.000 --> 03:14.570
+We can create traffic marking and traffic filtering policies.
+
+03:14.640 --> 03:23.370
+So for example we could create a filtering policy for some incoming traffic from a certain IP address
+
+03:23.370 --> 03:26.540
+range or a certain TCAP port.
+
+03:26.630 --> 03:32.150
+And when that traffic hits the vees for distributed switch the Vee's for distributed which will take
+
+03:32.150 --> 03:40.780
+the specified action maybe dropping the packet or we could even have it take certain actions like assigning
+
+03:40.980 --> 03:48.910
+a class of service or DCP tags to provide quality of service on outgoing traffic.
+
+03:49.120 --> 03:54.340
+So as this traffic is leaving the virtual switch and heading to the physical network we can set up a
+
+03:54.340 --> 04:00.100
+policy in the Vee's for a distributed switch to create these class of service or quality of service
+
+04:00.100 --> 04:00.870
+tags.
+
+04:01.270 --> 04:08.630
+And then as that traffic hits the physical network it will actually respect the quality of service values
+
+04:08.630 --> 04:09.830
+that we've appended.
+
+04:10.070 --> 04:17.570
+So that's traffic filtering and tagging is basically an access list and the virtual switch that can
+
+04:17.570 --> 04:22.930
+drop or accept certain types of traffic or can apply quality of service values.
+
+04:23.910 --> 04:27.060
+Then again in this course we cover this at a very basic level.
+
+04:27.080 --> 04:30.760
+I just want you to be familiar with the features that are available.
+
+04:30.800 --> 04:37.670
+We don't really get into how to configure a lot of these features or a lot of the very detailed specifics
+
+04:37.670 --> 04:39.690
+about how these features operate.
+
+04:39.740 --> 04:44.310
+We just want you to be aware of the features that are available and what they do.
+
+04:47.410 --> 04:49.970
+So another good feature is network health check.
+
+04:49.990 --> 04:54.160
+Again this is something that's supported only on the VSE for distributed switch.
+
+04:54.160 --> 04:57.040
+And basically here's what network health check does.
+
+04:57.250 --> 05:03.670
+You can run a network health check in the Vee's for a web client and what it will do is it will compare
+
+05:03.700 --> 05:09.760
+the configuration of your vse fair distributed switch like really critical configuration items like
+
+05:09.760 --> 05:15.730
+with the MT You are what's the next teaming method or the veel and configuration and it'll compare those
+
+05:15.730 --> 05:19.410
+configurations to how the physical switches configured.
+
+05:20.340 --> 05:26.830
+And tell you if there are inconsistencies that you can easily identify and fix.
+
+05:26.850 --> 05:34.470
+So that's the purpose of network health check is to validate the configuration of the fair distributed
+
+05:34.470 --> 05:38.310
+switch against the configuration of a physical switch.
+
+05:43.550 --> 05:49.610
+NET flow is a nother feature that's only supported on a VSE fair distributed switch.
+
+05:49.640 --> 05:56.750
+What it basically does is it tracks all of the traffic that's going on in your environment and it sends
+
+05:56.750 --> 05:59.980
+reports to a centralized server.
+
+06:00.320 --> 06:06.080
+It's kind of like a kid that tells all his friends and the collector is like the mom that he's telling
+
+06:06.230 --> 06:07.170
+them with.
+
+06:07.190 --> 06:07.430
+Right.
+
+06:07.430 --> 06:13.340
+So for example let's say that you know we have a virtual machine that sends some traffic to an e-mail
+
+06:13.340 --> 06:14.040
+server.
+
+06:14.100 --> 06:14.500
+Right.
+
+06:14.750 --> 06:21.940
+Well what will happen with net flow is the virtual switch will actually track that traffic and it'll
+
+06:21.950 --> 06:29.240
+send a little report to this net flow collector saying hey you know $10 $1.1 11 just talked to this
+
+06:29.270 --> 06:33.730
+e-mail server over port 80 and here's how much traffic it sent.
+
+06:33.910 --> 06:39.610
+And this allows the net flow collector Whether it's like what's up gold or solar winds or any of those
+
+06:39.610 --> 06:40.770
+options.
+
+06:40.810 --> 06:48.730
+It allows the net flow collector to build up a detailed historical record of all the traffic that's
+
+06:48.730 --> 06:56.980
+occurring on this network so that if you need to do forensic analysis or figure out you know the traffic
+
+06:56.980 --> 07:01.510
+patterns over time or maybe have an issue that occurred like one o'clock people said everything was
+
+07:01.510 --> 07:07.690
+slow all night and go into that flow collector and look at what was happening at one o'clock and you'll
+
+07:07.690 --> 07:11.080
+have a nice historical record of all of the traffic occurring.
+
+07:11.180 --> 07:13.000
+And that's the purpose of net flow.
+
+07:13.000 --> 07:19.450
+Again this is something that's been around forever in the physical network and the VSE for distributed
+
+07:19.460 --> 07:26.620
+switch can be configured Fearnot flow and can send these reports to an outflow collector
+
+07:29.860 --> 07:33.970
+and the last feature we're going to talk about here is Port mirroring.
+
+07:33.970 --> 07:41.790
+So port mirroring can be used to send a copy of all the traffic on one port to another port.
+
+07:41.800 --> 07:49.640
+So for example let's say that this traffic is flowing in and it's destined for one of these virtual
+
+07:49.640 --> 07:57.140
+machines where we can set up a port mirroring session to say any traffic for this particular port should
+
+07:57.140 --> 08:00.140
+also be mirrored to this other port.
+
+08:00.200 --> 08:07.880
+So maybe what I want to do is put a sniffer or put you know wireshark or something running on this second
+
+08:07.890 --> 08:12.430
+port so that I can monitor all the traffic that's actually hitting the first port.
+
+08:12.620 --> 08:14.760
+That's what port mirroring is used for.
+
+08:14.900 --> 08:21.280
+And there's all sorts of different port mirroring session types that you can set up.
+
+08:21.290 --> 08:26.990
+Again we do more in the other vse for our courses we kind of get a little deeper on those things for
+
+08:26.990 --> 08:33.650
+the purposes of the VM We're certified associate what you need to know is Portmeirion is a way to take
+
+08:33.650 --> 08:40.820
+all of the traffic that's occurring on one port and send an identical copy of that traffic to some destination
+
+08:41.120 --> 08:44.200
+usually another port on a distributed switch.
+
+08:47.450 --> 08:54.170
+OK so let's take a moment to review in this lesson we learned about Cisco discovery protocol and blinkered
+
+08:54.290 --> 09:00.610
+discovery protocol and how they can be used to discover information about other network devices.
+
+09:01.690 --> 09:07.840
+We learned about net flow and how it can be used to send historical traffic records to a centralized
+
+09:07.840 --> 09:16.110
+collector so that we can analyze historical traffic patterns and do things like forensic analysis or
+
+09:16.120 --> 09:20.610
+determine the root cause of intermittent performance issues.
+
+09:23.340 --> 09:29.160
+We learned how traffic filtering and marking can be used on the VSE for distributed switch to do things
+
+09:29.160 --> 09:35.610
+like drop certain types of traffic or apply quality of service tags to certain types of traffic and
+
+09:35.610 --> 09:42.330
+we learn how port mirin can be used to take traffic that's occurring on one port and send a mirrored
+
+09:42.330 --> 09:43.750
+copy of it to another port.

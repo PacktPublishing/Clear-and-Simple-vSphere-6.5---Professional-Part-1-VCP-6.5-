@@ -1,0 +1,196 @@
+WEBVTT
+
+00:00.170 --> 00:05.100
+In this video I'll demonstrate how to create a fair distributed switch.
+
+00:05.130 --> 00:08.150
+So here I am with the homescreen of these for web client.
+
+00:08.580 --> 00:13.080
+And you can see in my environment here I've got to ESX I hosts.
+
+00:13.080 --> 00:19.230
+So I want to create a Vee's for a distributed switch that will span both of these ESX I hosts.
+
+00:19.230 --> 00:24.480
+So I'm going to go to networking and you can see here I've already got a viz for a distributed switch
+
+00:24.480 --> 00:27.920
+that I've created before I'm going to create one more.
+
+00:28.080 --> 00:28.700
+So let's.
+
+00:28.710 --> 00:35.040
+Right click my virtual data center here and I'm going to go to a distributed switch and click on new
+
+00:35.040 --> 00:44.610
+distributed switch and on a new distributed switch I'm going to call this the VCP demo click on next
+
+00:45.560 --> 00:48.700
+and I'm going to choose the version of my vse for a distributed switch.
+
+00:48.710 --> 00:53.330
+I know that all of my hosts are ESX I 6.5 or later.
+
+00:53.510 --> 00:55.780
+So that will be just fine.
+
+00:55.790 --> 01:00.780
+So I'm going to go ahead and hit next Herr I get to choose the number of uplinks.
+
+01:00.830 --> 01:07.440
+And in this scenario I'm just going to leave it at the default for network IO control is currently enabled.
+
+01:07.460 --> 01:12.530
+I'll leave that enabled and I do want to create a default port group.
+
+01:12.630 --> 01:22.140
+So I'm going to call it my VM network and I'm just going to call it DP g to make it easy to differentiate
+
+01:22.140 --> 01:24.840
+this from any standard port groups that might exist.
+
+01:25.850 --> 01:29.900
+And then I'll hit next and finish.
+
+01:29.930 --> 01:30.890
+And so that's it.
+
+01:30.900 --> 01:35.080
+I've now created a VSE fair distributed switch.
+
+01:35.240 --> 01:40.190
+So the fact that I've created a Vee's for distributes which doesn't really mean much of anything at
+
+01:40.190 --> 01:41.250
+this point.
+
+01:41.280 --> 01:45.120
+I've created a discriminants which is not really doing anything.
+
+01:45.200 --> 01:51.260
+If I click on the distributed switch and come over here to the right you can see that this particular
+
+01:51.260 --> 01:56.900
+distributed switch is not currently associated with any ESX I hosts.
+
+01:56.900 --> 01:59.120
+So that's my next step.
+
+01:59.120 --> 02:06.390
+I'm going to go ahead and click on Add and manage hosts then I'm going to add some new host to this
+
+02:06.390 --> 02:08.210
+Vee's for a distributed switch.
+
+02:08.220 --> 02:17.940
+Now what this essentially means is that I've got this centralized configuration that's what I've created
+
+02:17.940 --> 02:19.030
+so far.
+
+02:19.060 --> 02:23.490
+Right if credit is distributed switch I've created a distributed port group.
+
+02:23.550 --> 02:28.830
+I haven't really modified the settings on it very much but there are security policy settings and all
+
+02:28.830 --> 02:30.680
+that stuff is baked into this.
+
+02:30.720 --> 02:33.350
+These are distributed switch configuration.
+
+02:33.630 --> 02:43.650
+And so when I add hosts What I'm essentially doing is pushing this configuration down to these ESX hosts
+
+02:43.710 --> 02:48.260
+and making this distributed switch available on those hosts.
+
+02:49.570 --> 02:53.620
+So I've got to ESX I host I'm going to select both of them.
+
+02:54.200 --> 03:02.030
+I'm going to click on next and I'm not going to manage any of my V.M. Colonel Portes I've got management
+
+03:02.030 --> 03:05.370
+VM Colonel Portes created on each of these hosts.
+
+03:05.420 --> 03:07.100
+They're actually in a standard switch.
+
+03:07.250 --> 03:12.570
+I'm going to leave those alone if I wanted to I could migrate those but I'm not going to do that.
+
+03:12.830 --> 03:17.060
+I am going to however manage my physical adapter so we'll take a look at that.
+
+03:18.420 --> 03:22.000
+And so basically here is how this works.
+
+03:23.270 --> 03:32.660
+I've got physical adapters on these ESX I hosts and each physical adapter can only be used by one virtual
+
+03:32.660 --> 03:39.110
+switch so you can see on each of these hosts I have three physical adapters and they're all in use.
+
+03:39.180 --> 03:46.610
+I'm actually going to grab these physical adapters from a different Vee's for a distributed switch and
+
+03:46.610 --> 03:51.530
+steal them for this particular Vee's for a distributed switch.
+
+03:51.530 --> 03:59.250
+So I'm going to take the next two and assign it to uplink one on my new distributed switch.
+
+03:59.790 --> 04:07.050
+And I'm also getting Rabbe VM next to this other Vee's for a distributed switch and assign that as well
+
+04:07.770 --> 04:09.140
+to uplink one.
+
+04:09.660 --> 04:14.120
+And so you can see here it's currently in use by the rick Creasey demo video.
+
+04:14.130 --> 04:17.730
+DV Yes which is something I created prior.
+
+04:18.180 --> 04:22.750
+And I'm changing that hair.
+
+04:22.850 --> 04:27.560
+And so now it's going to tell me hey is there any impact to like VM kernel ports or things like that.
+
+04:27.560 --> 04:30.180
+There's nothing like that to be concerned with.
+
+04:30.380 --> 04:38.680
+So I will finish and if we go ahead and browse back to hostes and Klosters.
+
+04:38.680 --> 04:41.120
+Now I've got these two hosts added.
+
+04:42.050 --> 04:44.160
+I'm going to go to one of my ESX I host.
+
+04:44.190 --> 04:51.830
+I'm going to go to configure and let's see what changes have now taken place with this host now has
+
+04:51.890 --> 04:55.590
+the VCP demo virtual switch.
+
+04:55.700 --> 05:03.790
+It's got one of its physical adapters allocated to this particular virtual switch VM Nic to.
+
+05:04.090 --> 05:07.620
+And if I look at my second ESX host it's going to be the same thing.
+
+05:08.200 --> 05:16.370
+This virtual switch is now going to be available on the second ESX host and VM to as I've configured
+
+05:16.370 --> 05:18.800
+it is now dedicated to this virtual switch.
+
+05:19.040 --> 05:24.740
+So that's a simple configuration of a regular fare distributed switch.

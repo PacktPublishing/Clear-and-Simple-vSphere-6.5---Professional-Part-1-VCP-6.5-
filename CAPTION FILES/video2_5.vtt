@@ -1,0 +1,88 @@
+WEBVTT
+
+00:00.780 --> 00:06.460
+In this video I'll explain and demonstrate how to configure encrypted vse Ferebee motion.
+
+00:06.620 --> 00:14.480
+This is a new feature that was released with these fair 6.5 and by default encrypted VM motion will
+
+00:14.480 --> 00:21.110
+be supported and enabled across your vse fair 6.5 ESX I hosts.
+
+00:21.110 --> 00:26.080
+And so what we're looking at right here is the documentation that breaks down this new feature.
+
+00:26.600 --> 00:32.660
+So for Virgin machines that are encrypted like if you've encrypted the virtual disk of your virtual
+
+00:32.660 --> 00:38.430
+machines and encrypted these for every motion is always used and is required.
+
+00:38.540 --> 00:45.290
+But for virtual machines that you have not encrypted the virtual disk of you can choose how you want
+
+00:45.350 --> 00:48.120
+the host to handle encrypted Wii motion.
+
+00:48.320 --> 00:48.710
+So.
+
+00:48.800 --> 00:54.310
+So you can choose disabled in which case encrypted Wii motion will not be used.
+
+00:54.770 --> 01:00.440
+You can choose the default which is opportunistic and with opportunistic.
+
+01:00.440 --> 01:07.280
+What this means is that if both the source and destination hosts support an encrypted Wii motion then
+
+01:07.310 --> 01:11.100
+your VM will be migrated using an encrypted Wii motion.
+
+01:11.570 --> 01:17.410
+But if one of the hosts does not support it then an unencrypted Wii Motion can still be used.
+
+01:17.480 --> 01:25.260
+That is the case unless we explicitly choose required where virtual machines can not be Wii motioned
+
+01:25.640 --> 01:28.710
+unless encrypted Wii motion is possible.
+
+01:29.650 --> 01:36.970
+Now as we're migrating virtual machines with Wii motion we have to bear in mind we're moving the contents
+
+01:37.060 --> 01:39.140
+of the virtual machines memory.
+
+01:39.700 --> 01:46.660
+And so this content can be pretty sensitive and that's really the rationale behind creating the ability
+
+01:46.660 --> 01:48.490
+to do an encrypted Wii motion.
+
+01:48.820 --> 01:53.920
+So the configuration of encrypted Wii motion on a VM is actually pretty straightforward.
+
+01:53.920 --> 02:04.300
+I'm going to Right-Click this VM go to Edit sendings and under VM options I have the option to choose
+
+02:04.600 --> 02:12.790
+my the motion settings so I'll expand encryption and under encryption I can choose whether I want to
+
+02:12.820 --> 02:19.450
+stick with the default which is opportunistic which will try to do an encrypted Wii motion if it's possible
+
+02:19.510 --> 02:26.350
+but if it's not possible it will still carry out an unencrypted Wii motion or I can choose required
+
+02:26.350 --> 02:27.840
+or disable.
+
+02:28.360 --> 02:31.380
+So a few different options there for this particular VM.
+
+02:31.380 --> 02:33.560
+I'm going to choose opportunistic.
+
+02:33.730 --> 02:36.610
+I'll leave it at the defaults and go ahead and head OK.

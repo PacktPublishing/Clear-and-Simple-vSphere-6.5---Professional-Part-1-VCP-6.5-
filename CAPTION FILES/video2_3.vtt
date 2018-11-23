@@ -1,0 +1,214 @@
+WEBVTT
+
+00:00.660 --> 00:06.360
+In this video I'll demonstrate how to secure vse fair virtual machines.
+
+00:06.490 --> 00:12.100
+So here you can see I'm at the homescreen of Vee's for a web client and we're going to start by looking
+
+00:12.100 --> 00:13.850
+at storage policies.
+
+00:14.170 --> 00:20.170
+And there's one specific storage policy that I'd like to show you the VM encryption policy.
+
+00:20.620 --> 00:29.740
+So this is a storage policy that allows us to dictate that the virtual disks for a virtual machine should
+
+00:29.740 --> 00:31.140
+be encrypted.
+
+00:32.540 --> 00:39.450
+And so that's how we're going to actually configure virtual machine disk encryption.
+
+00:39.800 --> 00:45.260
+And so prior to showing you the setting on the actual virtual machine itself I wanted to come in here
+
+00:45.260 --> 00:52.130
+quickly and show you the storage policy that dictates that a virtual machines disk should be encrypted
+
+00:53.000 --> 01:00.410
+and if we go back to our home screen and browse to hosts and Klosters Actually I'm going to grab a virtual
+
+01:00.410 --> 01:05.990
+machine right click it and go to edit settings
+
+01:10.280 --> 01:15.570
+and under edit settings I'm going to expand my hard disk for this VM.
+
+01:15.920 --> 01:21.140
+And here you can see the virtual machine storage policies and one of the storage policies that I can
+
+01:21.140 --> 01:24.470
+choose from is the VM encryption policy.
+
+01:25.380 --> 01:32.670
+So the reason that this is circled in red is because my VM configuration files are not encrypted and
+
+01:32.670 --> 01:38.630
+the hard disks can only be encrypted when the configuration files themselves are encrypted.
+
+01:38.640 --> 01:44.520
+So what I can do to resolve this is actually go to my VM click on it and I mean the hosts and cluster's
+
+01:44.520 --> 01:53.010
+view here and under configure I can go to policies and I can edit the V.M. storage policies not only
+
+01:53.010 --> 01:57.220
+for the virtual disk itself but for the virtual machine home directory.
+
+01:57.600 --> 02:04.670
+And that's what's going to include those configuration files that we saw before and that error message.
+
+02:05.040 --> 02:12.090
+So this is going to show us how we can actually apply encryption across not only the virtual disks but
+
+02:12.180 --> 02:15.000
+the VM home directory as well.
+
+02:15.830 --> 02:23.270
+And so this is a great security option that I can utilize just in case somebody were to somehow export
+
+02:23.270 --> 02:28.840
+a copy of this VMT K First some sort of nefarious purpose.
+
+02:29.510 --> 02:33.330
+Once they got that VMT OK all of the data on it would be encrypted.
+
+02:33.530 --> 02:37.730
+So this is definitely a great way to secure virtual machine data.
+
+02:39.430 --> 02:44.920
+Another feature that's supported in these first six top five is secure boot.
+
+02:44.920 --> 02:51.730
+So what secure boot does is it ensures that the software running on the virtual machine is actually
+
+02:51.730 --> 02:52.550
+legitimate.
+
+02:52.570 --> 02:57.490
+Like for example if you're running Windows on a virtual machine it validates that it's a legitimate
+
+02:57.550 --> 03:05.300
+installation of Windows so in order to enable secure buu on a virtual machine you'll simply right click
+
+03:05.300 --> 03:15.330
+that VM go to edit settings and look for Buddh options under VM options.
+
+03:15.350 --> 03:21.560
+So here is V.M. options Here's our boot options and here's where we could potentially enable secure
+
+03:21.560 --> 03:23.210
+buth as well.
+
+03:23.210 --> 03:30.530
+Now there are certain operating systems that support those like Windows or a nested ESX host.
+
+03:30.530 --> 03:36.350
+So you'll need to take a look at the documentation and ensure that what you're trying to enable this
+
+03:36.350 --> 03:38.210
+on is actually supported.
+
+03:39.230 --> 03:45.890
+And here you see the VM where documentation showing you all the information you need in order to enable
+
+03:45.890 --> 03:54.210
+U.A.E. ephi secure but so again like I said it's only supported by certain operating systems for Windows
+
+03:54.390 --> 03:58.990
+for ESX inside a virtual machine for Linux virtual machines.
+
+03:59.070 --> 04:04.470
+Some of the compatibility specifications are explained here.
+
+04:04.920 --> 04:09.720
+So these are some of the things that you might want to be aware of prior to enabling you with high secure
+
+04:09.720 --> 04:10.390
+but.
+
+04:11.040 --> 04:16.140
+And all of this information isn't available in the vse for documentation.
+
+04:16.230 --> 04:23.830
+Now another option that I want to look at under VM options is VM Ware tools installation.
+
+04:23.940 --> 04:27.620
+So here you can see the VMWare tools upgrades.
+
+04:27.790 --> 04:34.080
+I have a box checked that says the VM or tools should be automatically upgraded and checked every time
+
+04:34.080 --> 04:35.910
+this virtual machine powers on.
+
+04:36.150 --> 04:43.110
+This is going to ensure that this virtual machine is kept at the latest version of VM or tools and that
+
+04:43.110 --> 04:48.890
+I don't have to do a special reboot just to install the latest upgrades to VM more tools.
+
+04:48.900 --> 04:55.740
+Now one final thing I want to show you over here and VM options is the ability to configure encrypted
+
+04:55.780 --> 04:56.850
+Wii motion.
+
+04:57.300 --> 05:05.010
+So here under encryption I'm going to expand the encryption area and we have a couple of different options
+
+05:05.010 --> 05:06.710
+here for encrypted Wii motion.
+
+05:06.720 --> 05:10.190
+So the first option shown says opportunistic.
+
+05:10.230 --> 05:13.940
+And by the way there's a nice little information button here to the right.
+
+05:13.950 --> 05:17.480
+If you're curious what these different options mean.
+
+05:17.490 --> 05:22.560
+So with this Seybold you're disabling encrypted the motion and what you want.
+
+05:22.620 --> 05:30.030
+Bear in mind here is when you ve motion a virtual machine you're moving the contents of memory for that
+
+05:30.030 --> 05:37.410
+VM across the network so it may make sense to encrypt that traffic.
+
+05:37.430 --> 05:42.390
+Unless you're on a network that you trust if you trust the network and you're not going to worry about
+
+05:42.390 --> 05:46.660
+encryption go hadn't said this to disable opportunistic.
+
+05:46.890 --> 05:56.130
+Basically means if it can it will if both hosts support encryption and support encrypted emotion then
+
+05:56.130 --> 06:01.510
+encrypted E-motion will be used if one of the hosts does not support it.
+
+06:01.590 --> 06:08.730
+The motion will still happen but it will happen on encrypted and then finally the third option is required.
+
+06:08.940 --> 06:15.780
+And so if you set this to required that means that a V motion can only occur if both the source and
+
+06:15.780 --> 06:20.520
+destination hosts support V motion in an encrypted fashion.
+
+06:21.640 --> 06:26.130
+So that's how you enable encrypted Wii motion on a virtual machine.
+
+06:27.040 --> 06:32.560
+So those are the security settings that we want to take a look at in regards to our VM is that we need
+
+06:32.560 --> 06:33.310
+to be aware of.
+
+06:33.340 --> 06:35.010
+For the VCP exam.

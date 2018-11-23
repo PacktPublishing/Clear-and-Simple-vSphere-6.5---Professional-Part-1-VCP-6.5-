@@ -1,0 +1,193 @@
+WEBVTT
+
+00:00.910 --> 00:07.300
+In this video we'll explain some of the concepts behind virtual networking and how our virtual machines
+
+00:07.330 --> 00:15.670
+can connect to other resources either within the same ESX host or possibly even resources connected
+
+00:15.670 --> 00:16.850
+to our physical network.
+
+00:20.590 --> 00:27.580
+So how do virtual machines actually handle transmitting and receiving network traffic.
+
+00:28.180 --> 00:33.330
+Well in many ways they work exactly the same way that a physical machine does.
+
+00:33.340 --> 00:42.190
+So here we see a virtual machine and it has a network interface card just like any other network connected
+
+00:42.280 --> 00:43.030
+machine.
+
+00:44.290 --> 00:48.400
+But in this case we're dealing with a virtual Nic.
+
+00:48.450 --> 00:56.370
+Now our guest operating system in this case Windows has no idea that the virtual on deck is not an actual
+
+00:56.610 --> 00:57.890
+hardware device.
+
+00:57.990 --> 00:58.560
+Right.
+
+00:58.710 --> 01:05.100
+Windows just sees a network interface card and from the perspective of the guest operating system that's
+
+01:05.100 --> 01:06.580
+really the end of the story.
+
+01:08.520 --> 01:15.720
+So Windows sends some packet to the virtual neck and my virtual neck.
+
+01:15.780 --> 01:23.070
+And just like a physical Nic would my virtual Nic needs to connect to a switch so our virtual machines
+
+01:23.310 --> 01:30.270
+will connect to a virtual machine port group on a virtual switch and the port group is used to use to
+
+01:30.270 --> 01:35.810
+define settings like relay and membership and security policies and stuff like that.
+
+01:37.940 --> 01:46.460
+And my ESX I host also has physical interfaces but my traffic doesn't necessarily need to flow over
+
+01:46.460 --> 01:47.880
+a physical interface.
+
+01:48.020 --> 01:54.230
+If I've got multiple virtual machines connect to the same port group they can communicate without their
+
+01:54.230 --> 01:57.430
+traffic ever flowing over a physical network.
+
+01:58.860 --> 02:05.790
+And then of course my ESX I host itself has some physical network interfaces that connects to a physical
+
+02:05.790 --> 02:06.510
+switch.
+
+02:06.560 --> 02:08.510
+These are called V.M. next.
+
+02:08.640 --> 02:17.130
+And if my traffic needs to flow to the Internet or to some physical server it will do so using these
+
+02:17.130 --> 02:19.430
+VM nics or physical adapters.
+
+02:24.520 --> 02:32.230
+So a VM Nic is basically an uplink for a virtual switch that gives that connectivity to the actual physical
+
+02:32.230 --> 02:32.870
+network.
+
+02:34.700 --> 02:38.420
+But overture machine port groups are really only half the story.
+
+02:38.530 --> 02:46.520
+My VM groups are for all of my virtual machine traffic everything else is going to be handled by a VM
+
+02:46.520 --> 02:47.520
+Critchlow port.
+
+02:47.790 --> 02:54.380
+Right so the virtual machine port groups are kind of like ports on a physical switch that a PC would
+
+02:54.380 --> 03:01.640
+connect to our server would connect to whereas VM kernel ports are special types of ports on a virtual
+
+03:01.640 --> 03:09.240
+switch that are used for traffic like Wii motion or IP storage or management.
+
+03:09.380 --> 03:19.100
+These are ports that the hosts and vse center use to talk amongst themselves for purposes other than
+
+03:19.100 --> 03:20.660
+virtual machine traffic.
+
+03:22.740 --> 03:29.080
+And then our hosts and our virtual switches also support villans and they support trunk ports as well.
+
+03:29.110 --> 03:29.320
+Right.
+
+03:29.320 --> 03:33.220
+So for example let's say I've got two virtual machines here.
+
+03:33.450 --> 03:40.210
+The virtual machine on top is connected to a port group with the Leontine assigned to it.
+
+03:40.230 --> 03:47.760
+So my VM on the top of my diagram here is connected to a group that has Vilda antenna signed and my
+
+03:47.760 --> 03:54.310
+V.M. The bottom is connected to a different group with a different Vili's on a side.
+
+03:54.510 --> 04:03.270
+So as traffic flows into the virtual switch from my VM on the top of the screen it's going to hit a
+
+04:03.270 --> 04:06.370
+port group that's tagged with Vili antenne.
+
+04:06.840 --> 04:12.150
+And if that VM is trying to communicate with the other VM that traffic is actually going to have to
+
+04:12.150 --> 04:20.190
+flow out the physical network to a switch hit a router that can route between villans and eventually
+
+04:20.190 --> 04:22.750
+that traffic will flow back in.
+
+04:23.070 --> 04:30.060
+And that's kind of how our Valene segmentation works with a virtual switch is each VM will connects
+
+04:30.060 --> 04:31.010
+to a port group.
+
+04:31.140 --> 04:38.960
+Those poor groups will have villans defined and we will have a trunk port to a physical switch that
+
+04:39.020 --> 04:44.170
+is able to handle traffic across multiple villans on a single physical connection.
+
+04:46.240 --> 04:52.300
+That way the physical switch can actually see a consistent set of violence and can see which virtual
+
+04:52.300 --> 04:57.220
+machine traffic belongs on which we plan as that traffic arrives.
+
+05:00.160 --> 05:08.350
+So for the purposes of the VM or certified associate exam you really want to understand that there are
+
+05:08.350 --> 05:17.260
+these things called Virtual switches that exist within the ESX I host and on them we've got virtual
+
+05:17.260 --> 05:23.090
+machine scripts and each virtual machine is going to be equipped with a virtual neck.
+
+05:23.090 --> 05:29.630
+And you may have heard some of the options there like a VM x three virtual network interface card.
+
+05:29.950 --> 05:38.600
+Those are going to provide connectivity to the virtual machine port groups on the virtual switches.
+
+05:38.600 --> 05:45.800
+It's basically like having a fake switch running inside of your ESX host that interconnects all of those
+
+05:45.820 --> 05:49.140
+VMs on that host.
+
+05:49.380 --> 05:58.830
+And also applies V LAN tagging and security policies based on those poor group memberships.
+
+05:58.880 --> 06:03.980
+Then we've also got these special ports on the virtual switches called V.M. kernel ports and this is
+
+06:03.980 --> 06:10.280
+another important concept for the example VM kernel ports are used for management traffic storage traffic
+
+06:10.290 --> 06:11.330
+the motion traffic.

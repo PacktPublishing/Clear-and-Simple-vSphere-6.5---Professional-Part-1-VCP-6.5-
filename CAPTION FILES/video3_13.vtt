@@ -1,0 +1,175 @@
+WEBVTT
+
+00:00.670 --> 00:07.110
+In this demo I'll demonstrate how to configure port mirroring on the VSE fair distributed switch.
+
+00:07.130 --> 00:13.610
+So first off the purpose of mirroring is to duplicate the traffic and a distributed port or maybe even
+
+00:13.610 --> 00:20.100
+multiple distributed ports and send a copy of it to some sort of destination.
+
+00:20.180 --> 00:24.070
+And so I'm going to start out by choosing my Vee's for a distributed switch here.
+
+00:24.080 --> 00:33.550
+VCP demo and under the configure menu you can see mirroring and if I click on new here that gives us
+
+00:33.550 --> 00:39.490
+the ability to go ahead and create a new port mirroring session.
+
+00:39.610 --> 00:41.940
+So the first session type is pretty straightforward.
+
+00:41.950 --> 00:49.600
+Here we are mirroring traffic from one set of distributed ports to another set of distributed ports.
+
+00:49.600 --> 00:54.510
+So we must be using a virtual machine to actually monitor that traffic.
+
+00:54.700 --> 01:00.490
+And then we've got remote mirroring source and remote mirroring destination.
+
+01:00.520 --> 01:07.630
+So with a remote mirroring source what we're doing is we're mirroring traffic from a set of distributed
+
+01:07.630 --> 01:11.390
+ports to specific physical uplink ports.
+
+01:11.410 --> 01:16.430
+This is like in our span session we're going to have something in the physical network.
+
+01:17.250 --> 01:20.990
+That is actually going to be receiving that traffic out.
+
+01:21.000 --> 01:29.280
+One of the uplinks of my ESX host and monitoring that traffic or if I want to do an hour span session
+
+01:29.310 --> 01:37.980
+in reverse I can have remote mirroring destination meaning traffic is coming from a set of virtual lands
+
+01:38.760 --> 01:42.320
+and is being received by a distributed port.
+
+01:42.330 --> 01:47.250
+We also have encapsulated remote mirroring layer 3 source.
+
+01:47.250 --> 01:52.320
+So we're going to take traffic that's going to set up distributed ports and Sandomir or copy of it to
+
+01:52.320 --> 01:59.090
+a particular IP address that IP address could be a virtual machine it could be a physical server somewhere.
+
+01:59.140 --> 02:04.900
+And so I'm just going to go with the first option here which is called distributed port mirroring and
+
+02:04.900 --> 02:06.270
+I'm going to give it a name.
+
+02:06.380 --> 02:08.940
+I can choose whether I want to enable or disable it.
+
+02:08.980 --> 02:10.970
+At the moment I'm just going to leave it disabled.
+
+02:11.710 --> 02:19.220
+And now I can say OK I am mirroring traffic from one port to another on the destination poor.
+
+02:19.300 --> 02:26.800
+Is it purely going to be used to receive this traffic or can the machine on the destination port generate
+
+02:26.800 --> 02:28.100
+its own traffic.
+
+02:28.240 --> 02:35.020
+I'm going to allow it to and that I can adjust the granularity here I can change the sampling rate higher
+
+02:35.020 --> 02:38.290
+or lower if I'd like to I'm going to leave it at the defaults.
+
+02:38.590 --> 02:41.620
+And then what you can do is choose the source and destination port.
+
+02:42.040 --> 02:49.330
+And in order to choose a source port there has to actually be a virtual machine connected to that poor
+
+02:49.360 --> 02:50.530
+and power down.
+
+02:50.680 --> 02:57.460
+So I'm going to choose this one particular poor as my source port and then I'll choose a different port
+
+02:57.460 --> 03:04.900
+which would be probably like some kind of monitoring virtual machine or maybe a sniffer or an intrusion
+
+03:04.900 --> 03:11.440
+prevention system or who knows what but something that I want to actually have receive a mirror copy
+
+03:11.440 --> 03:14.160
+of all of this traffic on a different port.
+
+03:14.470 --> 03:19.220
+And so this is really the most basic kind of port mirroring session that you can set up.
+
+03:19.300 --> 03:25.410
+And now all of the traffic that's received on my source port will be automatically mirrored to my destination
+
+03:25.410 --> 03:25.970
+port.
+
+03:26.200 --> 03:29.430
+So that's how we can figure port mirroring session.
+
+03:30.130 --> 03:35.390
+Now a couple of things that I do just want to mention when you're configuring a mirroring session one
+
+03:35.400 --> 03:41.850
+of the settings that it kind of zipped past a little bit quickly here was the mirrored packet like.
+
+03:42.040 --> 03:47.440
+And you'll notice we have the ability to basically say what does the packet length that we actually
+
+03:47.440 --> 03:51.010
+want to duplicate and send a copy of that traffic to.
+
+03:51.100 --> 03:57.210
+And so here we see it's 60 bytes is the length that's configured here.
+
+03:57.280 --> 04:03.070
+If I choose to do this only the first 60 bytes of each packet is actually going to be mirrored.
+
+04:03.170 --> 04:05.220
+I think you will why would I want to do that.
+
+04:05.220 --> 04:08.070
+Why wouldn't I just mirror the entire package.
+
+04:08.290 --> 04:14.980
+Well most of the time when you're setting up a mirroring session you're not actually trying to capture
+
+04:15.130 --> 04:21.100
+all of the data that the source machine is actually sending or receiving.
+
+04:21.280 --> 04:27.670
+What you're really trying to do is analyze those packet headers and so you don't necessarily have to
+
+04:27.670 --> 04:31.110
+capture the entire packet in order to do that.
+
+04:31.180 --> 04:36.100
+So that's the final piece that I just wanted to go back and revisit quickly and explain why you have
+
+04:36.100 --> 04:40.030
+the ability to override that mirrored packet length.
+
+04:40.030 --> 04:48.160
+Now when you're planning on taking the exam my recommendation would be to be able to briefly describe
+
+04:48.370 --> 04:54.460
+each of these different port mirroring session types and understand at a very basic level what each
+
+04:54.460 --> 04:57.060
+of these port marrying sessions does.
+
+04:57.310 --> 05:01.560
+So be familiar with that before you go and set your VCP exam.

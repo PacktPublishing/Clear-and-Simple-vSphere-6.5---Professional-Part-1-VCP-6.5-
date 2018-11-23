@@ -1,0 +1,172 @@
+WEBVTT
+
+00:01.230 --> 00:07.160
+In this video I'll demonstrate how to configure a storage array type plug ins and path selection plug
+
+00:07.160 --> 00:10.360
+ins for an ESX host.
+
+00:10.590 --> 00:16.530
+So here you can see I am at the storage view of the Vee's for a web client and I've clicked on a particular
+
+00:16.530 --> 00:23.120
+data store and under that data store I've clicked on configure and connectivity and multipath.
+
+00:23.990 --> 00:30.260
+And here you can see this particular data store is mounted to one specific ESX host.
+
+00:30.260 --> 00:36.050
+This is actually a local data store on that particular ESX host.
+
+00:36.270 --> 00:41.870
+Down here we can see the different multipath details specific to this particular host.
+
+00:41.910 --> 00:43.530
+And this data store.
+
+00:43.620 --> 00:49.440
+So I can see here the path selection policy that is currently selected is one called fixed and then
+
+00:49.440 --> 00:55.080
+it has a little VM where in parentheses and I can see the preferred path.
+
+00:55.080 --> 00:57.150
+Now again this is a local data store.
+
+00:57.180 --> 00:59.910
+There's not a whole lot of paths to choose from here.
+
+01:00.210 --> 01:08.840
+And that I can see my storage array type policy which is v M.W. SATB local and if I click on edit multipath
+
+01:08.850 --> 01:15.780
+thing you can see here I can choose different path selection policies if I want.
+
+01:16.080 --> 01:22.610
+So number one I want to break down really quickly what the difference between these three policies are.
+
+01:22.710 --> 01:30.320
+Number one fixed basically means you have the ability to select a preferred path.
+
+01:30.480 --> 01:37.140
+If there are five different paths that this host can use to get to this storage you choose which one
+
+01:37.140 --> 01:37.730
+you want.
+
+01:37.890 --> 01:46.340
+You said that preferred path and that path is always used unless it fails at which point one of the
+
+01:46.430 --> 01:48.610
+other paths will be utilized.
+
+01:48.950 --> 01:50.440
+That's how fixed works.
+
+01:52.250 --> 02:00.890
+Most recently used is basically going to take the first path that becomes available and it will continuously
+
+02:00.890 --> 02:05.360
+use only that one path to reach this storage device.
+
+02:06.190 --> 02:10.540
+Now if that path fails it'll fail to a different path.
+
+02:10.780 --> 02:15.120
+And most recently used there is no way to set a preferred path.
+
+02:15.730 --> 02:21.100
+So if it fails to a different path it's going to always stay on that path unless that path fails.
+
+02:21.340 --> 02:24.640
+There's no fail back.
+
+02:24.670 --> 02:26.450
+And then finally we've got round robin.
+
+02:26.620 --> 02:33.520
+So if you have multiple paths to your storage device round robin will distribute that storage traffic
+
+02:33.910 --> 02:36.590
+across those different paths.
+
+02:36.820 --> 02:39.120
+So which one should you use.
+
+02:39.460 --> 02:45.820
+Well the real recommendation here is check with your storage vendors documentation use whatever your
+
+02:45.820 --> 02:47.620
+storage vendor recommends.
+
+02:47.620 --> 02:55.210
+If it's a local storage fixt is perfectly fine but your storage vendor may have a specific preference
+
+02:55.510 --> 03:00.170
+as to which of these path selection policies you utilize.
+
+03:01.310 --> 03:07.100
+Your storage vendor might even have their own plugins that they want you to implement.
+
+03:07.160 --> 03:14.890
+So you can see what we're using here is the NAACP the native multipath plug in this is built into every
+
+03:14.890 --> 03:15.980
+ESX I host.
+
+03:16.090 --> 03:25.510
+It just comes with ESX I'm the MP so fixed round robin most recently used those are Baig to write into
+
+03:25.540 --> 03:26.550
+ESX.
+
+03:26.890 --> 03:35.560
+Now those storage paths selection plugins may not really be the exact right ones for your particular
+
+03:35.560 --> 03:36.400
+storage vendor.
+
+03:36.400 --> 03:42.910
+Maybe they've made their own little load bouncing and failure detection mechanisms that are going to
+
+03:42.910 --> 03:47.560
+work much more efficiently with their particular brand of storage.
+
+03:47.950 --> 03:52.220
+That's what the pluggable storage architecture is all about.
+
+03:52.240 --> 03:59.550
+It gives you the ability to import multipath policies that have been provided by your storage vendor
+
+04:00.680 --> 04:06.110
+and the process is going to differ a little bit for each of the different storage vendors out there.
+
+04:06.320 --> 04:13.790
+So as far as what you need to know for the exam you need to be able to differentiate fixed in which
+
+04:13.790 --> 04:20.630
+case you set a preferred path and that preferred path is always used unless it fails most recently used
+
+04:21.380 --> 04:23.620
+in which case one path is used.
+
+04:23.690 --> 04:26.450
+If that path fails another path is used.
+
+04:26.540 --> 04:28.100
+There is no fail back.
+
+04:28.150 --> 04:35.300
+There is no preferred path and then round robin in which the traffic is distributed across multiple
+
+04:35.300 --> 04:36.140
+paths.
+
+04:36.440 --> 04:41.690
+You need to be able to differentiate between those three and you need to understand the concept that
+
+04:41.690 --> 04:48.860
+the native multi-pass thing plug in is built right into ESX high but that you can also implement pluggable
+
+04:48.890 --> 04:54.230
+storage architecture storage plug ins from your storage vendor.

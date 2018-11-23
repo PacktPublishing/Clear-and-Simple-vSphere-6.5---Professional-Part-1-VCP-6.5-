@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00.530 --> 00:05.760
+In this video I'll explain an independent hardware I scuzzy initiator.
+
+00:05.980 --> 00:14.200
+This is a solution that we can utilize in our ESX host to provide connectivity to an ICE Kazee storage
+
+00:14.200 --> 00:15.890
+right over an ethernet network.
+
+00:16.790 --> 00:18.580
+So let's take a look at how this works.
+
+00:18.590 --> 00:23.200
+Here we have a Windows virtual machine on the left with a virtual scuzzy controller.
+
+00:23.330 --> 00:29.450
+And as that virtual machine generates storage commands they flow out of the virtual scuzzy controller
+
+00:29.990 --> 00:33.350
+and they hit a physical storage adapter.
+
+00:33.350 --> 00:41.540
+Now in this case the physical storage adapter is an independent hardware scuzzy initiator that has built
+
+00:41.540 --> 00:49.160
+in Ethernet ports so we don't require any sort of VM kernel port in this situation.
+
+00:50.440 --> 00:54.940
+The independent hardware I suppose the initiator is a complete hardware solution.
+
+00:55.060 --> 01:00.060
+We don't need a software I suppose the initiator identified we don't need VM kernel ports.
+
+01:00.070 --> 01:07.660
+It's got its built in Ethernet ports that we can use to connect directly to the storage network and
+
+01:07.660 --> 01:13.210
+the big benefit of the independent hardware I suppose the initiator is that it really leaves a lot of
+
+01:13.210 --> 01:21.310
+the storage workload from the ESX host it makes many of these storage operations independent of the
+
+01:21.310 --> 01:25.070
+current performance of the use of the ESX host.
+
+01:25.090 --> 01:31.430
+Now my storage has its own independent hardware that handles that workload.

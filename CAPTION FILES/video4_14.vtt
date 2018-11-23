@@ -1,0 +1,235 @@
+WEBVTT
+
+00:01.380 --> 00:09.340
+In this video we'll introduce virtual volumes and virtual games is really the next generation of Wiis
+
+00:09.350 --> 00:15.590
+for storage and we've already spent some time learning learning about VM as data stores and manifest
+
+00:15.590 --> 00:22.970
+data stores and things like that and virtual Sam virtual items are kind of the next step in the evolution
+
+00:23.060 --> 00:24.090
+of storage.
+
+00:25.630 --> 00:30.880
+But the other nice thing about them is they support a lot of the existing storage architecture that
+
+00:30.940 --> 00:32.860
+already exists.
+
+00:32.860 --> 00:41.730
+So for example virtual volumes support common storage networks like Fiber Channel and I scuzzy and fast.
+
+00:41.960 --> 00:49.340
+But the biggest difference is that our virtual machine objects are actually exposed to the storage array
+
+00:50.370 --> 00:50.620
+right.
+
+00:50.650 --> 00:55.600
+So let's kind of think about the way that things are right now.
+
+00:55.610 --> 00:55.830
+Right.
+
+00:55.840 --> 00:58.530
+Without virtual volumes.
+
+00:58.540 --> 01:01.080
+What we've got are data stores.
+
+01:01.120 --> 01:01.380
+Right.
+
+01:01.390 --> 01:02.770
+We've got these data stores.
+
+01:02.800 --> 01:07.710
+And here's our data store and our data stores formatted with VM fast.
+
+01:07.750 --> 01:10.380
+So here's a VM EF-S data store.
+
+01:10.550 --> 01:18.870
+Well when you take a data store and you format it with VM fast you're creating a file system on that
+
+01:18.870 --> 01:27.210
+data store that the storage array does not understand that the storage array is not able to dig inside
+
+01:27.210 --> 01:34.350
+of a VM fast data store and view individual virtual machine objects.
+
+01:34.530 --> 01:42.210
+And that's the biggest difference between virtual volumes and the traditional long and VM FS architecture
+
+01:42.720 --> 01:49.200
+is that we can manage individual virtual machine objects at the storage array level.
+
+01:49.200 --> 01:54.660
+This makes things like cloning and snapshots very different than they've traditionally been with a VM
+
+01:54.660 --> 01:57.170
+a fast data store.
+
+01:57.200 --> 02:04.910
+So with a traditional data store architecture what we have are logical unit numbers.
+
+02:04.910 --> 02:06.370
+We're going to have these Lunds.
+
+02:06.800 --> 02:12.430
+And on those lines we're going to create VM status stores.
+
+02:12.520 --> 02:17.710
+So here we see two lines and on each line we've created a data store and then we can store all of our
+
+02:17.710 --> 02:25.510
+virtual machine objects within those data stores and what the lawn has typically provided is basically
+
+02:25.510 --> 02:33.090
+a container where all of those virtual machine files will be head rephrase.
+
+02:33.260 --> 02:40.460
+And what the line has typically provided is a storage container where all of those virtual machine files
+
+02:40.520 --> 02:43.310
+will be located.
+
+02:43.410 --> 02:48.560
+Now with the vaules the concept of a lawn and data store go away.
+
+02:48.810 --> 02:54.020
+So it evolves what we're going to do is we're going to have a new object called a storage container
+
+02:57.140 --> 03:02.990
+and all our vehicles are virtual volumes are going to be stored in this storage container and the storage
+
+03:02.990 --> 03:08.140
+container doesn't have the traditional limitations of a LUN.
+
+03:08.180 --> 03:14.230
+The only restriction is the maximum actual physical storage capacity of the array.
+
+03:15.720 --> 03:17.610
+So do data stores still exist.
+
+03:17.610 --> 03:28.620
+Well technically yes they do but data store is purely there for functions like high availability data
+
+03:28.620 --> 03:30.540
+stores and things like that.
+
+03:30.810 --> 03:36.420
+What really is going on now is we've got this one big storage container on the storage array and the
+
+03:36.420 --> 03:43.170
+storage array has visibility to all of the individual virtual machine objects that are contained within
+
+03:43.470 --> 03:44.670
+that storage container.
+
+03:46.590 --> 03:52.160
+So our storage container is where all of our virtual volumes exist.
+
+03:52.800 --> 04:02.530
+And as a virtual machine needs to send storage commands to its virtual disks for example we have something
+
+04:02.530 --> 04:06.490
+called the protocol endpoint and basically handles all the traffic.
+
+04:06.700 --> 04:12.190
+So our host doesn't really care about the storage container it doesn't care how big or small it is it
+
+04:12.190 --> 04:14.350
+doesn't care how many of them there are
+
+04:17.770 --> 04:25.830
+there's going to simply be this protocol endpoint that will serve as an interface to the storage container.
+
+04:25.930 --> 04:32.140
+And so one my virtual machine issues a scuzzy command the scuzzy command just like always will flow
+
+04:32.140 --> 04:37.900
+out of the virtual scuzzy controller of the VM and the ESX I host the hypervisor will send it to the
+
+04:37.900 --> 04:43.630
+appropriate storage adapter through the protocol endpoint and the data bill will be written to the individual
+
+04:43.630 --> 04:45.590
+virtual volume.
+
+04:45.610 --> 04:53.390
+So that's kind of some of the underlying mechanisms that are involved with virtual lives.
+
+04:53.530 --> 05:00.250
+Now from the perspective of what benefits does it provide Let's say that you need to clone a virtual
+
+05:00.250 --> 05:01.120
+machine.
+
+05:01.150 --> 05:06.490
+Right so you have this virtual machine and the V-Vocal for the virtual machine is here and we need to
+
+05:06.490 --> 05:13.590
+clone it well rather than handling the cloning operation at the ESX host level.
+
+05:13.740 --> 05:19.410
+We can handle it at the storage container level and at the storage array because the storage array can
+
+05:19.410 --> 05:21.440
+see all of these individual vehicles.
+
+05:21.480 --> 05:24.100
+And that's a much more efficient.
+
+05:24.260 --> 05:29.910
+Let's think about a cloning operation where the host is handling it well what's going to happen in that
+
+05:29.910 --> 05:30.720
+scenario.
+
+05:30.960 --> 05:36.530
+Is all of this virtual machines data is going to have to get pulled into the host.
+
+05:36.780 --> 05:41.470
+And then a copy of it has to all get pushed back to the storage for it.
+
+05:41.640 --> 05:45.730
+That's the way that cloning has traditionally been performed.
+
+05:45.750 --> 05:53.250
+What if instead of this traditional method if we wanted to perform a cloning operation maybe V Center
+
+05:53.730 --> 05:59.760
+could simply send a command to the storage array and tell the storage array hey this virtual volume
+
+05:59.760 --> 06:01.020
+needs to be cloned.
+
+06:01.020 --> 06:09.180
+This virtual line needs to be snapshot and then the storage array itself handles that workload without
+
+06:09.180 --> 06:13.100
+having to transmit all of that data over the storage network.
+
+06:13.100 --> 06:13.280
+Right.
+
+06:13.280 --> 06:14.980
+We don't need that.
+
+06:15.190 --> 06:19.230
+We can offload those tasks to the storage array.
+
+06:19.560 --> 06:25.050
+So there are huge efficiencies with virtual volumes and that's why it's kind of the push towards the
+
+06:25.050 --> 06:26.960
+next generation of storage.
+
+06:26.970 --> 06:32.550
+Now these are not going to displace traditional VMA has data stores any time within the next couple
+
+06:32.550 --> 06:40.060
+of years but eventually the percentage of virtual volumes back storage devices will continue to grow.

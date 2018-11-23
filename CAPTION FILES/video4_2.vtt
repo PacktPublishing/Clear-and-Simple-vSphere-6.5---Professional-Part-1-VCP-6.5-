@@ -1,0 +1,142 @@
+WEBVTT
+
+00:00.980 --> 00:08.050
+In this video I'll break down the differences between NFL version 3 and NTFS version 4 it out one.
+
+00:08.430 --> 00:16.930
+And as a Vee's fear of six FS version it out one is now supported for our NFL status stores.
+
+00:16.960 --> 00:23.820
+So NFL for now one comes with some additional functionality that version 3 does not include.
+
+00:23.820 --> 00:29.970
+That being said there are also some limitations that are specific to NFL version for not one that you
+
+00:29.970 --> 00:31.490
+need to be aware of as well.
+
+00:31.520 --> 00:31.860
+Right.
+
+00:31.980 --> 00:40.260
+So number one with end of US version 3 storage traffic is strictly unencrypted.
+
+00:40.350 --> 00:40.700
+Right.
+
+00:40.710 --> 00:52.000
+So we can only use FS on networks that we 100 percent trust the other limiting factor is as you can
+
+00:52.000 --> 00:58.480
+see here there is only one IP address on our network attached storage device.
+
+00:58.550 --> 01:11.720
+So because of that the ESX host uses only one TCAP connection for I O to the FS storage device only
+
+01:11.720 --> 01:17.720
+a single IP address can be used for the NFA server per data store and this can make the load balancing
+
+01:17.720 --> 01:24.680
+difficult because we typically use IP hash for load balancing this type of traffic.
+
+01:25.010 --> 01:34.540
+If we have the same IP for all of our traffic IP hashes Im going to do us any good.
+
+01:34.640 --> 01:39.860
+And the final limitation actually not really a limitation but more of our requirement is that with the
+
+01:39.870 --> 01:46.240
+edifies version 3 the ESX I host requires a root access to the server.
+
+01:46.550 --> 01:51.710
+And this can become a little bit of an issue because many N.F. fast devices come with something called
+
+01:51.710 --> 02:00.040
+the root squash enabled which basically disallows remote attempts to connect to it as root.
+
+02:00.050 --> 02:08.390
+So that's just something to bear in mind with version 3 is that the ESX host must have root level access
+
+02:08.660 --> 02:10.480
+to the FS server.
+
+02:11.300 --> 02:16.670
+Ok so fast forward to his version for not one and some things have changed.
+
+02:16.940 --> 02:24.860
+Number one there is improved security because the headers of all of our and FS traffic are encrypted
+
+02:24.860 --> 02:25.800
+and signed.
+
+02:26.070 --> 02:30.760
+And so we're not actually encrypting all of the storage traffic but we're encrypting all of the headers.
+
+02:31.010 --> 02:33.100
+So we have an improved level of security there.
+
+02:33.440 --> 02:40.670
+Also you'll notice a second IP address just appeared on my network attached storage device multipath
+
+02:40.670 --> 02:44.900
+thing is now supported using multiple IP addresses.
+
+02:44.910 --> 02:53.760
+And also we no longer need root level access with NFL version 4.1.
+
+02:53.770 --> 02:59.120
+The big downside to any of us version for that one is VHI is not supported.
+
+02:59.200 --> 03:07.870
+So if you're not familiar with VHI it's the VSD for API for Array integration and what it allows you
+
+03:07.870 --> 03:12.600
+to do is carry out certain vse Farrell type functions.
+
+03:12.610 --> 03:15.470
+NF has Version 3 right.
+
+03:15.490 --> 03:20.860
+Things like creating thick provisioned disks rely on VHI
+
+03:23.960 --> 03:24.530
+so.
+
+03:24.910 --> 03:31.670
+And as a result for not one we have Kerberos support included This is what actually removes the need
+
+03:31.670 --> 03:33.310
+for root level access.
+
+03:33.380 --> 03:39.770
+But what you need to do is make sure that all of your hosts use a matching set of credentials and to
+
+03:39.770 --> 03:45.640
+do this you'll utilize an active directory domain controller and key distribution center.
+
+03:45.650 --> 03:54.360
+One final item that I want to point out if you're currently using FS version 3 and you want to create
+
+03:54.600 --> 04:01.930
+or want to cut over two and it has a version for it out one you can not connect from one host using
+
+04:02.010 --> 04:08.090
+FS version 3 and another host using FS version for it out one to the same data store.
+
+04:08.270 --> 04:14.530
+As a matter of fact if you try to do that you can potentially corrupt the contents of that data store.
+
+04:14.840 --> 04:22.040
+So the best way to kind of make this transition to N.F. has for not one is to do it as a whole or you
+
+04:22.040 --> 04:25.750
+don't want half of your hosts on three and half of your hosts for not one.
+
+04:25.760 --> 04:28.420
+This is a this is kind of like a hard cut over.
+
+04:28.520 --> 04:32.660
+You want to get everything up to 4.1 simultaneously.
+
+04:32.660 --> 04:36.650
+That way there is no disparity between your ESX I hosts.

@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00.890 --> 00:07.340
+In this video I'll explain private villans private villans are a feature that supported on the Wii's
+
+00:07.340 --> 00:14.020
+fair distributed switch and they can be used to isolate traffic within a LAN.
+
+00:14.050 --> 00:23.110
+So for example in this slide we see virtual machines that are all on the same network the 10 dot 1.1
+
+00:23.180 --> 00:25.610
+that zero network.
+
+00:25.650 --> 00:31.860
+Now maybe these virtual machines are owned by different departments or different tenants and we need
+
+00:31.860 --> 00:34.760
+to create some sort of isolation between them.
+
+00:36.300 --> 00:43.590
+All of our virtual machines are in primary Vili's and 10 but secondary villans have also been created
+
+00:44.950 --> 00:49.730
+and two of these victims are in an isolated secondary plan.
+
+00:49.810 --> 00:56.620
+Now that means that these virtual machines can only communicate with virtual machines that are connected
+
+00:56.920 --> 00:58.250
+to promiscuous ports
+
+01:04.360 --> 01:11.780
+even virtual machines within the same secondary isolated Villon can not communicate with each other.
+
+01:11.860 --> 01:16.590
+They can only communicate to VMI that are connected to a promiscuous port.
+
+01:16.990 --> 01:23.050
+So maybe the two virtual machines connected to secondary Villon and one 10 belong to different departments
+
+01:23.050 --> 01:24.290
+or different companies.
+
+01:24.490 --> 01:31.090
+They're isolated from each other and they can only communicate with perhaps a router that's on a permit
+
+01:31.130 --> 01:33.510
+cueist port.
+
+01:33.520 --> 01:41.170
+We also have community villans So notice in red and blue we have primary Vili's 10 and secondary villin
+
+01:41.240 --> 01:48.580
+111 and in blue we have primary Villalon 10 and secondary Villalon 112 and those have been defined as
+
+01:48.580 --> 01:57.390
+community villans the AMS within the same community can connect with each other they can communicate
+
+01:57.390 --> 01:59.460
+within their community LAN
+
+02:02.280 --> 02:10.950
+they can also communicate with the promiscuous violent however communities cannot communicate with each
+
+02:10.950 --> 02:12.170
+other.
+
+02:12.180 --> 02:19.320
+So for example if one of the virtual machines in secondary Vili's and one 11 tries to connect to one
+
+02:19.320 --> 02:23.390
+of the virtual machines and secondary v. LAN 1:12 that traffic will not be allowed.
+
+02:25.380 --> 02:32.580
+And again all virtual machines in all secondary villans can always communicate with anything thats connected
+
+02:32.580 --> 02:35.430
+to a promiscuous secondary via LAN.

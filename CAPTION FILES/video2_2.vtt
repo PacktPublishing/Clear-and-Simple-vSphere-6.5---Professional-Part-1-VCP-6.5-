@@ -1,0 +1,247 @@
+WEBVTT
+
+00:00.210 --> 00:06.030
+In this video I'll demonstrate how to configure roles and permissions and the Beast for web client.
+
+00:06.030 --> 00:12.720
+So here you can see I've already logged into my vse fear web client and at the home screen we have the
+
+00:12.720 --> 00:15.010
+roles button right here.
+
+00:15.180 --> 00:21.150
+You can also access roles by going to the administration area and we can see all of our roles right
+
+00:21.150 --> 00:22.180
+here.
+
+00:22.350 --> 00:26.550
+And so underneath roles we've got a few things that we need to be aware of.
+
+00:26.550 --> 00:30.640
+Now number one you've got the built in Administrator role.
+
+00:30.870 --> 00:37.330
+And if we take a look at the privileges included there you can see it's pretty much everything right.
+
+00:37.350 --> 00:45.750
+The administrator can do everything whereas the other built in roles like Read-Only and no access are
+
+00:45.750 --> 00:48.260
+substantially more restrictive.
+
+00:48.630 --> 00:51.090
+And those three are pretty self-explanatory.
+
+00:51.110 --> 00:59.130
+Right we've got our administrator our Read-Only and our no access you can also see here.
+
+00:59.460 --> 01:07.650
+There is another pre-built standard role that's included automatically called No cryptography administrator
+
+01:08.520 --> 01:16.710
+and this is essentially the same privileges as the administrator role with a couple minor differences.
+
+01:16.740 --> 01:21.860
+The most significant of which being it can't do encryption operations.
+
+01:22.200 --> 01:26.210
+So with these for a 6.5 we can encrypt virtual machine disks.
+
+01:26.370 --> 01:28.400
+We can't do that if we've got no.
+
+01:28.410 --> 01:31.470
+Cryptography administrator Rob.
+
+01:31.600 --> 01:37.000
+So that's an administrator that can do everything except for cryptographic operations.
+
+01:39.370 --> 01:44.350
+So those are the kind of big for pre-built roles right there.
+
+01:44.440 --> 01:47.700
+We've also got a bunch of sample rolls.
+
+01:47.740 --> 01:55.280
+So if you need to create your own custom roles you can actually do so based on these samples.
+
+01:55.540 --> 01:58.040
+And that's a great way to create a new custom role.
+
+01:58.060 --> 02:04.360
+So if I wanted to create a new custom role similar to the content library administrator sample role
+
+02:04.750 --> 02:13.990
+I could simply hit clone I could create my own custom roll and I can choose exactly which privileges
+
+02:14.050 --> 02:15.400
+should be included.
+
+02:17.220 --> 02:22.560
+And as you can see here I've already created a couple of sample custom roles I'm actually going to get
+
+02:22.560 --> 02:30.050
+rid of these and we're going to create a new custom moral.
+
+02:30.200 --> 02:38.260
+So I'm going to call my new custom roll help desk and this is a custom role for my helpdesk team.
+
+02:38.380 --> 02:42.390
+So I want them to be able to do things like manage alarms.
+
+02:42.430 --> 02:48.680
+I want them to be able to do things like open a console to a virtual machine.
+
+02:48.820 --> 02:56.200
+And so under virtual machine I'll give them certain permissions like interaction and configuration and
+
+02:56.200 --> 03:02.830
+guest operations and I'll choose some other things that I want to allow my helpdesk team to do like
+
+03:02.830 --> 03:08.760
+maybe for example place a host in a maintenance mode or something like that.
+
+03:09.030 --> 03:15.160
+Anyways I'll just kind of pick and choose exactly what I want to allow my helpdesk administrators to
+
+03:15.160 --> 03:15.970
+do.
+
+03:16.240 --> 03:20.770
+And those are the privileges that will be included in this role.
+
+03:20.800 --> 03:22.220
+So that's what our role is.
+
+03:22.270 --> 03:26.030
+It's simply a set of privileges.
+
+03:26.150 --> 03:33.680
+And so now I've created my own custom role for my helpdesk team with a specific set of privileges included
+
+03:33.680 --> 03:34.260
+there.
+
+03:34.550 --> 03:39.010
+And so this role in and of itself doesn't actually accomplish anything.
+
+03:39.050 --> 03:44.540
+The role doesn't mean anything until I actually assign it to a user.
+
+03:44.540 --> 03:51.530
+So let's go here to hosts and Klosters and I'm going to set up a new permission by the way a quick side
+
+03:51.530 --> 03:51.780
+note.
+
+03:51.800 --> 03:55.410
+You may notice that my hosts are disconnected here.
+
+03:55.430 --> 04:01.420
+That was because I had expired licenses which I have since resolved.
+
+04:01.700 --> 04:04.990
+So when your license expires it disconnects your hosts.
+
+04:05.060 --> 04:08.780
+I have figured out the licensing issues though.
+
+04:09.080 --> 04:12.730
+So what I'm going to do is I'm actually going to reconnect these hosts quickly here.
+
+04:13.920 --> 04:17.770
+That my license is up to date they should connect no problem.
+
+04:17.840 --> 04:20.910
+Anyways let's go ahead and set up some permissions.
+
+04:20.910 --> 04:28.410
+So here you can see I've clicked on my H.A. cluster and under the H.A. cluster I'm going to go to permissions
+
+04:28.500 --> 04:30.540
+by the way my hosts are connected now.
+
+04:31.110 --> 04:35.980
+So I'm going to go to permissions and I'm going to create a new permission.
+
+04:36.300 --> 04:43.790
+So let's click a little plus button here and what I want to do is I want to give the help desk roll
+
+04:46.480 --> 04:49.690
+to either a user or group.
+
+04:49.870 --> 04:54.070
+So if I click on Add here I'm going to be able to see all of my users and groups in the vees for that
+
+04:54.160 --> 04:56.740
+local domain in your environment.
+
+04:56.740 --> 05:02.620
+You've probably got an active directory domain available here and you can pick active directory domain
+
+05:02.620 --> 05:04.100
+users and groups.
+
+05:04.420 --> 05:09.460
+So I'm just going to pick a random group here I'm going to call it ESX adman's.
+
+05:09.490 --> 05:10.460
+Perfect.
+
+05:10.490 --> 05:11.810
+I'll add here.
+
+05:13.320 --> 05:14.020
+OK.
+
+05:15.190 --> 05:23.770
+So what I've established so far is everybody in this particular group ESX adman's is going to get the
+
+05:23.770 --> 05:25.160
+help desk role.
+
+05:25.460 --> 05:31.000
+They're going to get the help desk roll on the H.A. cluster.
+
+05:31.180 --> 05:34.940
+So they're going to have all of these privileges on that ha cluster.
+
+05:35.080 --> 05:39.970
+And I've got this propagate to children box checked.
+
+05:39.970 --> 05:47.880
+So that means that child objects of that cluster such as these two ESX hosts here are also going to
+
+05:47.880 --> 05:49.980
+get this same permission.
+
+05:50.010 --> 05:58.010
+So when I hit OK here the permissions should appear and there it is ESX admins have the help desk.
+
+05:58.170 --> 06:04.080
+And if I drill down and look at these child objects and look at their permissions they should have that
+
+06:04.080 --> 06:05.200
+permission as well.
+
+06:06.130 --> 06:10.610
+Because I can figure that checkbox to propagate to child objects.
+
+06:10.630 --> 06:17.560
+If I look at my hosts if I look at my virtual machines that permission should have propagated down to
+
+06:17.560 --> 06:23.330
+all of these child objects and we can see that it has.
+
+06:23.380 --> 06:27.910
+So that's how you create roles and permissions inside of the Vees.
+
+06:27.910 --> 06:28.890
+Fair web client.
+
+06:29.020 --> 06:35.870
+And you just want to keep in mind the roles are simply a collection of privileges privileges.
+
+06:36.130 --> 06:43.710
+Define what we can do and those privileges are used to create a permission for either a user or a group.

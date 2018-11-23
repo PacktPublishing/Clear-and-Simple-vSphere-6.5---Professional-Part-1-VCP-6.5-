@@ -1,0 +1,262 @@
+WEBVTT
+
+00:00.270 --> 00:05.760
+In this video I'll demonstrate how to configure private lands in a sphere distributed switch.
+
+00:05.820 --> 00:11.280
+So here you can see I'm logged into my vees for web climb and the networking view yet again and I've
+
+00:11.280 --> 00:15.600
+gone to my VCP demo distributed switch and configure.
+
+00:15.600 --> 00:19.030
+I have the ability to establish private villans.
+
+00:19.080 --> 00:25.740
+Now real quick before I do that I'm going to go ahead and add a couple new distributed port groups here
+
+00:26.100 --> 00:28.630
+just for the purposes of demo ing this.
+
+00:28.710 --> 00:31.740
+So I'm going to create one port group called Shared Services.
+
+00:31.740 --> 00:37.340
+This is my fictional port group that every bunny needs to have access to.
+
+00:37.470 --> 00:42.530
+And so I'm going to establish this as a port group that everybody can reach.
+
+00:42.540 --> 00:48.580
+So that's my shared services port group then I'm going to create another port group.
+
+00:48.600 --> 00:55.020
+I'm going to call it tennents so connecting to this port group will be a bunch of different tenants.
+
+00:55.290 --> 01:01.590
+And the goal is that these tenants should be able to communicate with the shared services but they should
+
+01:01.590 --> 01:04.930
+not be able to communicate with each other.
+
+01:06.080 --> 01:11.620
+And then I'm going to create two more port groups that we're going to use to demonstrate community violence.
+
+01:11.810 --> 01:13.540
+So create a new distributed group.
+
+01:13.610 --> 01:17.470
+This one is going to be called ABC team one.
+
+01:17.780 --> 01:24.320
+So just think of this ABC team one group as one in which we are going to connect a bunch of virtual
+
+01:24.320 --> 01:30.690
+machines from a company called ABC and they want to be able to communicate with each other but they
+
+01:30.690 --> 01:34.780
+should not be able to communicate with any of these other tenants.
+
+01:34.830 --> 01:41.410
+And I'm also going to create one last port group I'm going to call it X Y Z team one.
+
+01:41.520 --> 01:43.460
+This is a different company.
+
+01:43.680 --> 01:48.030
+And again they're going to have multiple virtual machines connecting to this port group that need to
+
+01:48.030 --> 01:49.180
+be able to communicate.
+
+01:49.450 --> 01:52.150
+But X Y Z is a different company than ABC.
+
+01:52.350 --> 01:57.100
+So their machines should not be able to communicate with each other.
+
+01:57.120 --> 02:03.420
+So now I've got all of these different groups with all of these different communications requirements.
+
+02:03.570 --> 02:04.110
+Right.
+
+02:04.260 --> 02:09.510
+Everything and ABC team one should be able to communicate with everything an ABC team want.
+
+02:09.510 --> 02:14.520
+Same thing with x y z team won everything in this group should be able to communicate with everything
+
+02:14.610 --> 02:15.840
+else in this group.
+
+02:16.140 --> 02:19.170
+But the two groups cannot communicate with each other.
+
+02:20.550 --> 02:25.090
+However they can communicate with shared services.
+
+02:25.230 --> 02:27.530
+So can my tenants.
+
+02:27.690 --> 02:30.780
+Tenants cannot communicate directly with each other.
+
+02:30.870 --> 02:33.040
+They could be virtual machines on the same port group.
+
+02:33.090 --> 02:35.100
+I do not want them to be able to communicate.
+
+02:35.130 --> 02:42.160
+The only thing that my tenants should be able to communicate with is shared services and thats at.
+
+02:42.180 --> 02:48.540
+So the only way that I can accomplish this is to configure private lands.
+
+02:48.780 --> 02:50.720
+So here's what we're going to do.
+
+02:50.730 --> 02:54.130
+We're going to go ahead and create a primary villain.
+
+02:54.150 --> 03:01.190
+I'm going to call the primary villain 10 and then I'm going to have a secondary villain of ten which
+
+03:01.200 --> 03:06.680
+is promiscuous and this is going to be the villain that he use for shared services.
+
+03:06.750 --> 03:14.760
+Promiscuous can communicate with anything else I'm going to create two community events so I'm going
+
+03:14.760 --> 03:23.790
+to call these community relations 101 and 102 these are my secondary lands sort of like a VPN within
+
+03:23.790 --> 03:29.490
+a villain and then I'm going to create a third secondary villain.
+
+03:29.550 --> 03:36.170
+This one is going to be an isolated secondary villain all secondary between two and one.
+
+03:36.480 --> 03:42.380
+So you'll notice the primary v is the same primary between 10.
+
+03:42.390 --> 03:50.970
+That means that any machines connected to ABC team 1 shared services tennents X Y Z team one they're
+
+03:50.970 --> 03:58.680
+actually all in VLAN 10 and they can actually all have IP addresses in the same subnet as each other.
+
+03:58.680 --> 04:01.580
+It's as if they're all in one VPN.
+
+04:01.590 --> 04:09.630
+But within that Lan I am craving certain rules to govern which groups can communicate with which groups
+
+04:09.960 --> 04:14.030
+which VM can communicate with which the AMS.
+
+04:14.760 --> 04:20.330
+And so now I have created my private view and structure.
+
+04:20.550 --> 04:23.600
+Let's start with my shared services
+
+04:27.950 --> 04:31.840
+and other properties I'm going to go to Edit
+
+04:35.930 --> 04:37.090
+and Valium.
+
+04:37.400 --> 04:46.340
+I am now going to choose private land and this is going to be associated with my promiscuous private
+
+04:46.340 --> 04:53.360
+Villon meaning anything I'm Villalon 10 whether it's in a community or an isolated it doesn't matter
+
+04:53.780 --> 04:59.710
+anything with movieland time can communicate with this particular portrait.
+
+04:59.960 --> 05:02.330
+It is promiscuous.
+
+05:02.940 --> 05:04.880
+Then I've got my tenants.
+
+05:05.180 --> 05:09.470
+These are reports that a bunch of different clients are going to connect to.
+
+05:09.710 --> 05:14.000
+And so I've got all of these different clients creating virtual machines that are going to connect to
+
+05:14.000 --> 05:15.590
+this group.
+
+05:15.710 --> 05:21.180
+I want to make sure that those different clients cannot communicate directly with one another.
+
+05:21.470 --> 05:28.400
+So I'm going to make this an isolated secondary Villon that means that I can have 100 virtual machines
+
+05:28.400 --> 05:30.110
+hooked up to this Tennent's port group.
+
+05:30.170 --> 05:32.020
+None of them can talk to each other.
+
+05:32.030 --> 05:39.090
+The only thing that they can communicate with is promiscuous which is shared services.
+
+05:39.820 --> 05:44.840
+And then we've got ABC team one again I'm going to edit this.
+
+05:44.860 --> 05:50.140
+We're going to go to the villans settings and I'm going to associate this with a community violation
+
+05:50.620 --> 05:58.840
+a little bit different than my isolated Villon because in a community private VLAN that means that any
+
+05:58.840 --> 06:03.250
+machines connected to this poor group can communicate with each other.
+
+06:03.760 --> 06:09.290
+Unlike tenants they could not communicate with each other in the secondary Villon they can.
+
+06:09.640 --> 06:17.460
+And I'll give X Y Z team one its own community land separate from the community Villon that I assigned
+
+06:17.470 --> 06:19.730
+to ABC team one.
+
+06:20.050 --> 06:26.500
+So let's go to VPN let's pick the secondary community via land that I created which I think it was 102.
+
+06:26.680 --> 06:27.930
+And there we go.
+
+06:27.940 --> 06:36.070
+So now I've established one single Valium villans hat with a bunch of secondary villans inside of it.
+
+06:36.070 --> 06:39.940
+And each of those secondary villans has different types of behavior.
+
+06:39.940 --> 06:43.330
+Promiscuous talks to anything it wants isolated.
+
+06:43.330 --> 06:44.940
+They don't talk to anybody.
+
+06:44.940 --> 06:50.110
+The only thing an isolated secondary Villon can talk to is a promiscuous secondary Viola.
+
+06:50.560 --> 06:56.930
+And then I've got my two communities one community for ABC team one and one community for X Y Z team
+
+06:56.930 --> 07:01.980
+one both of which can also communicate with my shared services.
+
+07:02.480 --> 07:09.130
+So that's a quick look at how to create private villans and an example of a really basic use case where
+
+07:09.140 --> 07:11.640
+private villans might make sense.

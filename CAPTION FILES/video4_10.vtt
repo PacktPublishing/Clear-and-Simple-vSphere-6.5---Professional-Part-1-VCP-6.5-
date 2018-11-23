@@ -1,0 +1,256 @@
+WEBVTT
+
+00:01.490 --> 00:06.720
+In this video we'll learn about storage distributed resource scheduler or storage.
+
+00:06.750 --> 00:13.370
+Doris storage distress is based on data store clustering.
+
+00:13.730 --> 00:19.670
+So we've already learned a little bit about ESX host clusters and how they can be used for things like
+
+00:20.120 --> 00:25.210
+high availability and the IRS data store cluster is very similar.
+
+00:25.220 --> 00:33.920
+It's just a logical grouping of data stores and these data stores may contain the files for many virtual
+
+00:33.920 --> 00:34.910
+machines.
+
+00:35.740 --> 00:42.660
+And as we add virtual machines the data stores may potentially become unbalanced.
+
+00:42.670 --> 00:52.090
+So for example maybe some really storage intensive workloads have been placed on data store one or maybe
+
+00:52.090 --> 01:00.700
+Data Store too is running low on space storage dress can automate load balancing across these data stores
+
+01:02.090 --> 01:04.020
+and it uses storage of motion.
+
+01:04.040 --> 01:10.040
+So just as a quick refresher here we see an ESX host with a virtual machine running on ESX.
+
+01:10.040 --> 01:16.340
+I just want if I want to carry out a storage of motion what I'm doing is I'm taking all of the files
+
+01:16.910 --> 01:24.470
+that belong to that virtual machine and are migrating them from one data source to another with no downtime.
+
+01:25.070 --> 01:27.020
+That's what storage of the motion is.
+
+01:27.020 --> 01:30.070
+So the virtual machine continues to run on the same host.
+
+01:30.200 --> 01:35.230
+But all of the underlying files are being moved from one storage location to another.
+
+01:36.310 --> 01:44.340
+That's what stored motion is and storage V motion is the underlying technology behind storage directs
+
+01:45.470 --> 01:52.320
+so storage devices going to do is it's going to automatically storage Wii motion virtual machines around
+
+01:52.770 --> 02:00.140
+for the purposes of balancing both capacity usage and latency.
+
+02:00.150 --> 02:08.130
+So for example of datastore one is getting really full or if data store one has a lot of storage intensive
+
+02:08.130 --> 02:11.240
+virtual machines that are generating a lot of traffic.
+
+02:11.250 --> 02:17.390
+It may start moving virtual machines to other data stores to even out that workload.
+
+02:19.920 --> 02:25.220
+Now there may be certain circumstances in which this can create some problems.
+
+02:25.280 --> 02:25.470
+Right.
+
+02:25.470 --> 02:32.180
+So for example here we see two virtual machines domain control or one and domain control or two.
+
+02:32.550 --> 02:34.180
+And these are redundant.
+
+02:34.180 --> 02:34.400
+Right.
+
+02:34.410 --> 02:39.690
+We don't want both of our domain controllers to be down at any time no matter what.
+
+02:40.050 --> 02:47.730
+But if we turn over control to storage distress it could potentially move those domain controllers to
+
+02:47.730 --> 02:48.980
+the same data store.
+
+02:49.050 --> 02:54.450
+And if that data store fails we've now lost both of our domain controllers.
+
+02:54.670 --> 03:02.730
+So we can use something called an anti finity rule to ensure that those domain controllers are kept
+
+03:02.740 --> 03:05.530
+separated.
+
+03:05.610 --> 03:12.840
+We can even set up an affinity or anti-fan and your rules for individual virtual machines disks to keep
+
+03:12.840 --> 03:15.120
+them on separate data stores or to keep them together.
+
+03:15.140 --> 03:20.910
+But you probably don't have to do a whole lot of that by default if you create a virtual machine with
+
+03:20.910 --> 03:25.110
+multiple desks all disks will be stored on the same data store.
+
+03:30.030 --> 03:35.190
+So one of the Handy things about creating a data store cluster is you can put a data store in a maintenance
+
+03:35.190 --> 03:35.870
+mode.
+
+03:36.300 --> 03:43.220
+So let's say the data store on the far left is on one storage device and the other two data stores are
+
+03:43.220 --> 03:50.550
+on other storage devices and maybe I need to take down a storage device like maybe a fiber channel storage
+
+03:50.550 --> 03:53.060
+array to do some sort of patching.
+
+03:53.310 --> 03:59.760
+Well I can put that data storage maintenance mode and what storage diarists will do is it will automatically
+
+03:59.880 --> 04:04.010
+evacuate that data store for me with no service interruption.
+
+04:04.380 --> 04:11.070
+So now I can go ahead and take that data store on the left down I can reboot my fiber channel storage
+
+04:11.070 --> 04:13.640
+array do whatever maintenance I need to do.
+
+04:13.950 --> 04:22.600
+And when it comes back that storage load will be rebalanced according to storage Doris's recommendations.
+
+04:22.680 --> 04:30.760
+So it definitely helps with things like maintenance and the first step is to create a data store cluster.
+
+04:30.770 --> 04:36.170
+Now you have to bear in mind that virtual machines are going to be moving around from one data store
+
+04:36.170 --> 04:37.820
+to another.
+
+04:37.880 --> 04:43.280
+So you want data stores that are going to act similar and that means data stores with similar performance
+
+04:43.280 --> 04:49.770
+characteristics and data stores with similar policies like for example if one data stores replicated.
+
+04:50.090 --> 04:57.590
+We don't want our virtual machine automatically moving off of it to a data store that is not replicated.
+
+04:57.650 --> 05:04.760
+We can't mix and Fs and VM data datasource in a cluster and we want to make sure that any shared storage
+
+05:05.390 --> 05:09.320
+within that cluster is available to as many hosts as possible.
+
+05:09.410 --> 05:15.350
+Now when we're setting up a storage de-risk cluster it's very similar to address cluster for our hosts
+
+05:15.800 --> 05:21.160
+in that we can choose the level of automation in manual mode.
+
+05:21.290 --> 05:27.440
+When I create a storage de-risk cluster it's not going to do anything automatically when it's going
+
+05:27.440 --> 05:33.410
+to do is simply provide me recommendations say this virtual machine should move from this data store
+
+05:33.410 --> 05:39.260
+to this data store that's going to give me the option of whether or not I want to carry out those recommendations
+
+05:40.500 --> 05:45.270
+in partially automated mode when we create a new virtual machine.
+
+05:46.130 --> 05:50.020
+We'll create it on a cluster.
+
+05:50.270 --> 05:56.770
+When we create a virtual desk for example we'll just pick the cluster and and partially automated mode
+
+05:57.070 --> 06:03.880
+storage Deros will pick the optimal data store for that virtual disk.
+
+06:04.040 --> 06:07.910
+So in partially automated mode we're kind of halfway there.
+
+06:07.940 --> 06:14.060
+It's storage DRM isn't going to automatically move anything anywhere but when we're creating a new virtual
+
+06:14.060 --> 06:17.840
+machine new virtual disk storage device we'll decide where to put it.
+
+06:19.060 --> 06:26.170
+And then finally we have fully automated mode where our storage de-risk cluster will automatically use
+
+06:26.170 --> 06:31.480
+storage of emotion to migrate virtual machines from one data store to another.
+
+06:31.600 --> 06:39.030
+Again for the purposes of load balancing capacity and latency.
+
+06:39.060 --> 06:44.940
+So in this lesson we learned about some of the following topics where we definitely gave you a very
+
+06:45.600 --> 06:49.620
+concise description of storage Deros.
+
+06:49.770 --> 06:54.660
+Again I would recommend some of the more in-depth classes if you want to learn more.
+
+06:54.960 --> 07:01.860
+We've got the Vee's for foundations course coming out soon and we'll also be releasing a viz for a professional
+
+07:02.160 --> 07:04.530
+level course as well on you to me.
+
+07:04.650 --> 07:08.740
+So all of those courses will take you much deeper into some of these features.
+
+07:09.910 --> 07:17.710
+So anyways in review in this lesson we learned about the following topics we can have multiple data
+
+07:17.710 --> 07:26.350
+stores associated to create a data store cluster and then we can monitor space usage and IO latency
+
+07:26.410 --> 07:30.680
+across that data store cluster and carry out recommendations.
+
+07:30.910 --> 07:36.490
+Very similar to dress that we use with our hosts and carry out these recommendations and use storage
+
+07:36.490 --> 07:40.570
+Wii motion to migrate virtual machines around.
+
+07:40.840 --> 07:45.250
+We can always add more data stores to a data store closer as we need to.
+
+07:45.490 --> 07:53.100
+And again the underlying mechanism for these moves is storage via motion and we can also configure some
+
+07:53.130 --> 08:00.540
+affinity or anti affinity rules to keep virtual machines either together on the same data store or an
+
+08:00.540 --> 08:02.790
+anti affinity role to keep them apart.
